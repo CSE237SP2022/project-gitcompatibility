@@ -5,7 +5,7 @@ public class WelcomeInterface {
 
 	public static void main(String[] args) {
 		String name = promptUserForName();
-		System.out.println(name);
+		displayWelcomeInterface(name);
 	}
 
 	public static String promptUserForName() {
@@ -17,5 +17,13 @@ public class WelcomeInterface {
 		}
 		scanner.close();
 		return input;
+	}
+	
+	public static void displayWelcomeInterface(String name) {
+		System.out.println("Welcome, " + name + "!");
+		System.out.println("What would you like to do first?");
+		System.out.println("Horoscope");
+		System.out.println("Compatibility Calculator");
+		System.out.println("Quizzes");
 	}
 }
