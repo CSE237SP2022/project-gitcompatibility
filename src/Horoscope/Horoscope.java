@@ -1,6 +1,7 @@
+package Horoscope;
 
 public class Horoscope {
-	String sign;
+	private String sign;
 	
 	public Horoscope(int month, int day) {
 		sign = assignSign(month, day);
@@ -12,12 +13,12 @@ public class Horoscope {
 				sign = "Pisces";
 			}
 			else {
-				sign = "Aries";
+				this.sign = "Aries";
 			}
 		}
 		if(month == 4) {
 			if(day < 20) {
-				sign = "Aries";
+				this.sign = "Aries";
 			}
 			else {
 				sign = "Taurus";
@@ -104,7 +105,7 @@ public class Horoscope {
 			}
 		}
 		
-		return null;
+		return sign;
 	}
 
 	public String getDailyHoroscope() {
@@ -112,7 +113,7 @@ public class Horoscope {
 	}
 	
 	public String getSign() {
-		return this.sign;
+		return sign;
 	}
 
 }
