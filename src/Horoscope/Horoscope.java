@@ -111,6 +111,7 @@ public class Horoscope {
 	public void getDailyHoroscope() {
 		
 		switch(this.sign) {
+		
 		case "Aries":
 			//todo DailyHoroscope
 			break;
@@ -146,10 +147,11 @@ public class Horoscope {
 		case "Pisces":
 			//todo DailyHoroscope
 			break;
-			
-		
+		default:
+			System.out.println("You will have a day today");
+			break;
 		}
-		System.out.println("You will have a day today");
+		
 	}
 	
 	public String getSign() {
