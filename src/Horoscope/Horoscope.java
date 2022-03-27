@@ -13,12 +13,12 @@ public class Horoscope {
 				sign = "Pisces";
 			}
 			else {
-				this.sign = "Aries";
+				sign = "Aries";
 			}
 		}
 		if(month == 4) {
 			if(day < 20) {
-				this.sign = "Aries";
+				sign = "Aries";
 			}
 			else {
 				sign = "Taurus";
@@ -108,8 +108,48 @@ public class Horoscope {
 		return sign;
 	}
 
-	public String getDailyHoroscope() {
-		return "You will have a day today";
+	public void getDailyHoroscope() {
+		
+		switch(this.sign) {
+		case "Aries":
+			//todo DailyHoroscope
+			break;
+		case "Taurus":
+			//todo DailyHoroscope
+			break;
+		case "Gemini":
+			//todo DailyHoroscope
+			break;
+		case "Cancer":
+			//todo DailyHoroscope
+			break;
+		case "Leo":
+			//todo DailyHoroscope
+			break;
+		case "Virgo":
+			//todo DailyHoroscope
+			break;
+		case "Libra":
+			//todo DailyHoroscope
+			break;
+		case "Scorpio":
+			//todo DailyHoroscope
+			break;
+		case "Sagittarius":
+			//todo DailyHoroscope
+			break;
+		case "Capricorn":
+			break;
+		case "Aquarius":
+			//todo DailyHoroscope
+			break;
+		case "Pisces":
+			//todo DailyHoroscope
+			break;
+			
+		
+		}
+		System.out.println("You will have a day today");
 	}
 	
 	public String getSign() {
