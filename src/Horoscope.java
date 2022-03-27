@@ -7,6 +7,7 @@ public class Horoscope {
 	}
 	
 	private String assignSign(int month, int day){	
+		
 		return null;
 	}
 
