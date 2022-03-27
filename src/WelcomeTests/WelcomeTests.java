@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import Welcome.WelcomeInterface;
 
 class WelcomeTests {
+	
+	Scanner scanner  = new Scanner(System.in);
 
 	Scanner scanner  = new Scanner(System.in);
 
@@ -24,3 +26,4 @@ class WelcomeTests {
 		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes"));
 	}
 }
+
