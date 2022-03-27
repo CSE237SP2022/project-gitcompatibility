@@ -1,13 +1,15 @@
-package WelcomeTests;
+package InputTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
+
+import Program.Program;
 import Welcome.WelcomeInterface;
 
-class WelcomeTests {
+class InputTests {
 
 	Scanner scanner  = new Scanner(System.in);
 
@@ -20,7 +22,7 @@ class WelcomeTests {
 
 	@Test
 	void testGetUserActivity() {
-		String input = WelcomeInterface.promptUserForActivity(scanner);
+		String input = Program.promptUserForActivity(scanner);
 		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes"));
 	}
 }
