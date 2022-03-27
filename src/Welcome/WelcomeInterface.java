@@ -8,7 +8,6 @@ public class WelcomeInterface {
 		Scanner scanner = new Scanner(System.in);
 		String name = promptUserForName(scanner);
 		displayWelcomeInterface(name);
-		String activity = promptUserForActivity(scanner);
 		scanner.close();
 	}
 
@@ -16,15 +15,6 @@ public class WelcomeInterface {
 		System.out.println("Hi! What's your name?");
 		String input = "";
 		while (input == "") {
-			input = scanner.nextLine();
-		}
-		return input;
-	}
-
-	public static String promptUserForActivity(Scanner scanner) {
-		String input = "";
-		while (!input.toLowerCase().equals("horoscope") && !input.toLowerCase().equals("compatibility calculator")
-				&& !input.toLowerCase().equals("quizzes")) {
 			input = scanner.nextLine();
 		}
 		return input;
