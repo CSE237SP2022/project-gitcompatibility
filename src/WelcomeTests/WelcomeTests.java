@@ -11,6 +11,8 @@ class WelcomeTests {
 	
 	Scanner scanner  = new Scanner(System.in);
 
+	Scanner scanner  = new Scanner(System.in);
+
 	@Test
 	void testGetUserName() {
 		String input = WelcomeInterface.promptUserForName(scanner);
@@ -24,3 +26,4 @@ class WelcomeTests {
 		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes"));
 	}
 }
+
