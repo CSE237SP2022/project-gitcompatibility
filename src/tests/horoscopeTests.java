@@ -27,7 +27,11 @@ class horoscopeTests {
 		
 	}
 	
-	
+	@Test
+	void testGetElement() {
+		String ariesElement = horoscopeTest.getElement();//test a method
+		assertTrue("Fire".equals(ariesElement));
+	}
 	
 	@Test
 	void test() {

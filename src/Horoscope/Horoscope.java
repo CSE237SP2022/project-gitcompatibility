@@ -2,9 +2,11 @@ package Horoscope;
 
 public class Horoscope {
 	private String sign;
+	private String element;
 	
 	public Horoscope(int month, int day) {
 		sign = assignSign(month, day);
+		this.element = getElement();
 	}
 	
 	private String assignSign(int month, int day){	
@@ -156,6 +158,18 @@ public class Horoscope {
 	
 	public String getSign() {
 		return sign;
+	}
+	
+	public String getElement(){
+		if(this.sign.equals("Aries")||this.sign.equals("Leo")||this.sign.equals("Saggittarius")){
+		return "Fire";
+		}
+		else if(this.sign.equals("Taurus")||this.sign.equals("Virgo")||this.sign.equals("Capricorn")){
+		return "Earth";
+		}
+		else{
+		return "Air";
+		}
 	}
 
 }
