@@ -21,6 +21,7 @@ public class WelcomeInterface {
 
 	public static void displayWelcomeInterface(String name) {
 		System.out.println("Welcome, " + name + "!");
+		System.out.println("Choose an activity to complete. After you're done, enter 'back' to go back to the activity menu.");
 		System.out.println("What would you like to do first?");
 		System.out.println("Horoscope");
 		System.out.println("Compatibility Calculator");
