@@ -25,5 +25,17 @@ class InputTests {
 		String input = Program.promptUserForActivity(scanner);
 		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes"));
 	}
+	
+	@Test
+	void testGetUserBirthMonth() {
+		int input = Program.promptUserForBirthMonth(scanner);
+		assertTrue(input > 0 && input < 13);
+	}
+	
+	@Test
+	void testGetUserBirthDay() {
+		int input = Program.promptUserForBirthDay(scanner);
+		assertTrue(input > 0 && input < 32);
+	}
 }
 
