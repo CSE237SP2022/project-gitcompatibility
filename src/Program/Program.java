@@ -14,7 +14,23 @@ public class Program {
 		String activity = promptUserForActivity(scanner);
 		Horoscope userHoroscope = null;
 		goToActivity(activity, userHoroscope, scanner);
+		while(true) {
+			if(checkIfUserGoesBack(scanner)) {
+				displayActivityMenu();
+				activity = promptUserForActivity(scanner);
+				goToActivity(activity, userHoroscope, scanner);
+			}
+		}
 	}
+
+
+	public static void displayActivityMenu() {
+		System.out.println("What do you want to do next?");
+		System.out.println("Horoscope");
+		System.out.println("Compatibility Calculator");
+		System.out.println("Quizzes");
+	}
+	
 	
 	public static void goToActivity(String activity, Horoscope userHoroscope, Scanner scanner) {
 		if(activity.toLowerCase().equals("horoscope")) {
@@ -34,6 +50,17 @@ public class Program {
 			QuizInput newQuiz = new QuizInput();
 			newQuiz.runQuiz();
 		}
+	}
+	
+	public static boolean checkIfUserGoesBack(Scanner scanner) {
+		String input = "";
+		boolean userGoesBack = false;
+		while(!input.toLowerCase().equals("back")) {
+			userGoesBack = false;
+			input = scanner.nextLine();
+		}
+		userGoesBack = true;
+		return userGoesBack;
 	}
 	
 	public static Horoscope createUserHoroscope(Scanner scanner) {

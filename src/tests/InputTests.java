@@ -43,7 +43,13 @@ class InputTests {
 	void createUserHoroscope() {
 		Horoscope horoscope = null;
 		horoscope = Program.createUserHoroscope(scanner);
-		assertTrue(horoscope != null);
+		assertNotEquals(horoscope, null);
+	}
+	
+	@Test
+	void testCheckIfUserDoesGoBack() {
+		boolean userGoesBack = Program.checkIfUserGoesBack(scanner);
+		assertEquals(userGoesBack, true);
 	}
 }
 
