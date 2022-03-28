@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import Quiz.QuizInput;
 
-class QuizResultTest {
+class QuizResultTests {
 
 	@Test
 	void mostlyYesAnswers() {
