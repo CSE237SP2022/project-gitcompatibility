@@ -18,22 +18,34 @@ public class Program {
 	
 	public static void goToActivity(String activity, Horoscope userHoroscope, Scanner scanner) {
 		if(activity.toLowerCase().equals("horoscope")) {
-			int month = promptUserForBirthMonth(scanner);
-			int day = promptUserForBirthDay(scanner);
-			userHoroscope = new Horoscope(month, day);
-			userHoroscope.getDailyHoroscope();
+			userHoroscope = createUserHoroscope(scanner);
+			userHoroscope.printHoroscope();
 		}
 		else if (activity.toLowerCase().equals("compatibility calculator")) {
-			Horoscope.getCompatibility();
+			if (userHoroscope == null) {
+				userHoroscope = createUserHoroscope(scanner);
+			}
+			System.out.println("Enter the other person's birthday: ");
+			int month = promptUserForBirthMonth(scanner);
+			int day = promptUserForBirthDay(scanner);
+			userHoroscope.getCompatibility(month, day);
 		}
 		else if (activity.toLowerCase().equals("quizzes")) {
-			Quiz.runQuiz();
+			QuizInput newQuiz = new QuizInput();
+			newQuiz.runQuiz();
 		}
-		
+	}
+	
+	public static Horoscope createUserHoroscope(Scanner scanner) {
+		System.out.println("Enter your birthday: ");
+		int month = promptUserForBirthMonth(scanner);
+		int day = promptUserForBirthDay(scanner); 
+		Horoscope userHoroscope = new Horoscope(month, day);
+		return userHoroscope;
 	}
 	
 	public static int promptUserForBirthMonth(Scanner scanner) {
-		System.out.println("What month were you born? (1-12)");
+		System.out.println("Birth month? (1-12)");
 		int month = 0;
 		while(month < 1 || month > 12) {
 			month = scanner.nextInt();
@@ -42,7 +54,7 @@ public class Program {
 	}
 	
 	public static int promptUserForBirthDay(Scanner scanner) {
-		System.out.println("What day were you born? (1-31)");
+		System.out.println("Birth day? (1-31)");
 		int day = 0;
 		while(day < 1 || day > 31 ) {
 			day = scanner.nextInt();

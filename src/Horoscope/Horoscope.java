@@ -196,7 +196,7 @@ public class Horoscope {
 		}
 	}
 	
-	private boolean getCompatibility(int month, int day){
+	public boolean getCompatibility(int month, int day){
 		Horoscope compare = new Horoscope(month,day);
 		for(String sign:compatibleSigns.get(getSign())){
 		if(sign.equals(compare.getSign ())){

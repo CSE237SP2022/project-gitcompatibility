@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
 
+import Horoscope.Horoscope;
 import Program.Program;
 import Welcome.WelcomeInterface;
 
@@ -36,6 +37,13 @@ class InputTests {
 	void testGetUserBirthDay() {
 		int input = Program.promptUserForBirthDay(scanner);
 		assertTrue(input > 0 && input < 32);
+	}
+	
+	@Test
+	void createUserHoroscope() {
+		Horoscope horoscope = null;
+		horoscope = Program.createUserHoroscope(scanner);
+		assertTrue(horoscope != null);
 	}
 }
 
