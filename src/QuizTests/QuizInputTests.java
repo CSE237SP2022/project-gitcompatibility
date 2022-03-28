@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import Quiz.QuizInput;
 
-class QuizInputTest {
+class QuizInputTests {
 
 	@Test
 	void checkYesTestFlase() {
@@ -33,22 +33,22 @@ class QuizInputTest {
 	void checkYesTestTrue() {
 		QuizInput quiz = new QuizInput();
 		String userInput = "yes"; 
-		int yesCounter = 1; 
+		quiz.yesCounter = 1; 
 		
 		quiz.checkInput(userInput);
 		
-		assertEquals(2, yesCounter);
+		assertEquals(2, quiz.yesCounter);
 	}
 	
 	@Test
 	void checkNoTestTrue() {
 		QuizInput quiz = new QuizInput();
 		String userInput = "no"; 
-		int noCounter = 1; 
+		quiz.noCounter = 1; 
 		
 		quiz.checkInput(userInput);
 		
-		assertEquals(2, noCounter);
+		assertEquals(2, quiz.noCounter);
 	}
 	
 }

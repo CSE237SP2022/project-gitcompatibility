@@ -12,7 +12,8 @@ public class QuizInput {
 	public QuizInput() {
 		this.yesCounter = 0; 
 		this.noCounter = 0; 
-		this.questions = new String[] {"one", "two", "three", "four", "five"};
+		this.questions = new String[] {"Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
+				, "Do you live off campus?", "Are you in engineering?", "Do you think WashU gives off Hogwarts vibes?"};
 		this.result = "";
 	}
 
@@ -42,7 +43,7 @@ public class QuizInput {
 	}
 
 	private void quizIntroduction() {
-		System.out.println("<Quiz Title>");
+		System.out.println("What is you ideal study spot on campus?");
 		System.out.println("To take this quiz, answer 'yes' or 'no' after each question. If you would like to end this quiz at any time, "
 				+ "enter 'quit'");
 	}
@@ -53,6 +54,13 @@ public class QuizInput {
 		}
 		else if (input == "no") {
 			noCounter++; 
+		}
+		else if(input == "quit") {
+			userQuitQuiz(); 
+		}
+		else {
+			System.out.println("Please enter a valid input.");
+			getUserInputToQuestion();
 		}
 	}
 	
@@ -72,14 +80,21 @@ public class QuizInput {
 	}
 	
 	private void resultOptionOne() {
-		System.out.println("<Result Option One>");
+		System.out.println("Your ideal study spot on campus is Law Library!");
 	}
 	
 	private void resultOptionTwo() {
-		System.out.println("<Result Option Two>");
+		System.out.println("Your ideal study spot on campus is Olin Library!");
 	}
 
 	private void resultOptionThree() {
-		System.out.println("<Result Option Three>");
+		System.out.println("Your ideal study spot on campus is Bytes!");
+	}
+	
+	private void userQuitQuiz() {
+		yesCounter = 0; 
+		noCounter = 0; 
+		System.out.println("You have decided to quit this quiz.");
+		return; 
 	}
 }
