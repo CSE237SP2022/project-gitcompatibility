@@ -36,8 +36,7 @@ public class QuizInput {
 		
 		while(userInput == "") {
 			userInput = reader.nextLine(); 
-		}
-		reader.close(); 
+		} 
 		
 		checkInput(userInput);
 	}

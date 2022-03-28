@@ -8,7 +8,6 @@ public class WelcomeInterface {
 		Scanner scanner = new Scanner(System.in);
 		String name = promptUserForName(scanner);
 		displayWelcomeInterface(name);
-		scanner.close();
 	}
 
 	public static String promptUserForName(Scanner scanner) {
