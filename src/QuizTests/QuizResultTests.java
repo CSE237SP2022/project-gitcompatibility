@@ -10,59 +10,42 @@ class QuizResultTest {
 
 	@Test
 	void mostlyYesAnswers() {
+		QuizInput quiz = new QuizInput();
 		int yesCounter = 4; 
 		int noCounter = 2; 
+		String result;
 		
-		if(yesAndNo(yesCounter, noCounter)) {
-			
-		}
-		String result = yesAndNo(yesCounter, noCounter); 
+		quiz.yesAndNo();
+		result = quiz.result;
 		
-		assertEquals("yes", result); 
+		assertEquals("option one", result); 
 	}
 	
 	@Test
 	void mostlyNoAnswers() {
-		int yesCounter = 2; 
-		int noCounter = 4; 
+		QuizInput quiz = new QuizInput();
+		int yesCounter = 1; 
+		int noCounter = 2; 
+		String result;
 		
-		String result = yesAndNo(yesCounter, noCounter); 
+		quiz.yesAndNo();
+		result = quiz.result;
 		
-		assertEquals("no", result); 
+		assertEquals("option two", result); 
 	}
 	
-//	@Test
-//	void optionOne() {
-//		bool quizOptionOne = true;
-//		bool quizOptionTwo = false;
-//		bool quizOptionThree = false;
-//		
-//		String result = quizResult(quizOptionOne, quizOptionTwo, quizOptionThree);
-//		
-//		assertEquals("one", result);
-//	}
-//	
-//	@Test
-//	void optionTwo() {
-//		bool quizOptionOne = false;
-//		bool quizOptionTwo = true;
-//		bool quizOptionThree = false;
-//		
-//		String result = quizResult(quizOptionOne, quizOptionTwo, quizOptionThree);
-//		
-//		assertEquals("two", result);
-//	}
-//	
-//	@Test
-//	void optionThree() {
-//		bool quizOptionOne = false;
-//		bool quizOptionTwo = false;
-//		bool quizOptionThree = true;
-//		
-//		String result = quizResult(quizOptionOne, quizOptionTwo, quizOptionThree);
-//		
-//		assertEquals("three", result);
-//	}
+	@Test
+	void equalAnswers() {
+		QuizInput quiz = new QuizInput();
+		int yesCounter = 1; 
+		int noCounter = 2; 
+		String result;
+		
+		quiz.yesAndNo();
+		result = quiz.result;
+		
+		assertEquals("option three", result); 
+	}
 
 }
 

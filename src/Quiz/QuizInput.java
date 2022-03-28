@@ -10,12 +10,13 @@ public class QuizInput {
 	private int yesCounter; 
 	private int noCounter;
 	private String[] questions; 
+	public String result; 
 	
 	public QuizInput() {
 		this.yesCounter = 0; 
 		this.noCounter = 0; 
 		this.questions = new String[] {"one", "two", "three", "four", "five"};
-
+		this.result = "";
 	}
 
 	public void runQuiz() {
@@ -50,7 +51,7 @@ public class QuizInput {
 				+ "enter 'quit'");
 	}
 
-	private void checkInput(String input) {
+	public void checkInput(String input) {
 		if(input == "yes") {
 			yesCounter++; 
 		}
@@ -59,14 +60,17 @@ public class QuizInput {
 		}
 	}
 	
-	private void yesAndNo() {
+	public void yesAndNo() {
 		if(yesCounter > noCounter) {
+			result = "option one";
 			resultOptionOne(); 
 		}
 		else if(yesCounter < noCounter) {
+			result = "option two";
 			resultOptionTwo();
 		}
 		else if(yesCounter == noCounter) {
+			result = "option three";
 			resultOptionThree(); 
 		}
 	}
