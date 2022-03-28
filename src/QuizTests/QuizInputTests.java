@@ -1,46 +1,71 @@
-package QuizTest;
+package QuizTests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
 import org.junit.jupiter.api.Test;
+import Quiz.QuizInput;
 
 class QuizInputTest {
 
 	@Test
-	void checkYesTest() {
-		String userInput = "yes"; 
+	void checkYesTestFlase() {
+		String userInput = "no"; 
+		int yesCounter = 1; 
 		
-		bool resultOfCheck = checkYes(userInput);
+		checkInput(userInput);
 		
-		assertEquals(true, resultOfCheck);
+		assertEquals(1, yesCounter);
 	}
 	
 	@Test
-	void checkNoTest() {
+	void checkNoTestFalse() {
 		String userInput = "yes"; 
+		int noCounter = 1; 
 		
-		bool resultOfCheck = checkNo(userInput);
+		checkInput(userInput);
 		
-		assertEquals(true, resultOfCheck);
+		assertEquals(1, noCounter);
 	}
 	
 	@Test
-	void quitTest() {
-		String userInput = "quit"; 
+	void checkYesTestTrue() {
+		String userInput = "yes"; 
+		int yesCounter = 1; 
 		
-		bool resultOfCheck = quitQuiz(userInput); 
+		checkInput(userInput);
 		
-		assertEquals(true, resultOfCheck); 
+		assertEquals(2, yesCounter);
 	}
 	
-	@Test 
-	void inputValid(){
-		String userInput = "invalid";
+	@Test
+	void checkNoTestTrue() {
+		String userInput = "no"; 
+		int noCounter = 1; 
 		
-		bool resultOfCheck = isValidInput(userInput); 
+		checkInput(userInput);
 		
-		assertEquals(false, resultOfCheck);
+		assertEquals(2, noCounter);
 	}
+	
+//	@Test
+//	void quitTest() {
+//		String userInput = "quit"; 
+//		
+//		bool resultOfCheck = quitQuiz(userInput); 
+//		
+//		assertEquals(true, resultOfCheck); 
+//	}
+//	
+//	@Test 
+//	void inputValid(){
+//		String userInput = "invalid";
+//		
+//		bool resultOfCheck = isValidInput(userInput); 
+//		
+//		assertEquals(false, resultOfCheck);
+//	}
 
 }
 

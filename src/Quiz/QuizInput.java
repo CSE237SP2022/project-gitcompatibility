@@ -15,7 +15,7 @@ public class QuizInput {
 		this.yesCounter = 0; 
 		this.noCounter = 0; 
 		this.questions = new String[] {"one", "two", "three", "four", "five"};
-		
+
 	}
 
 	public void runQuiz() {
@@ -23,6 +23,7 @@ public class QuizInput {
 		runThroughQuestions();
 		yesAndNo();
 	}
+	
 	private void runThroughQuestions() {
 		for(int i=0; i < questions.length; i++) {
 			System.out.println(questions[i]); 
