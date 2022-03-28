@@ -1,14 +1,11 @@
 package Quiz;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class QuizInput {
 	
-	private int yesCounter; 
-	private int noCounter;
+	public int yesCounter; 
+	public int noCounter;
 	private String[] questions; 
 	public String result; 
 	

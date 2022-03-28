@@ -11,8 +11,8 @@ class QuizResultTest {
 	@Test
 	void mostlyYesAnswers() {
 		QuizInput quiz = new QuizInput();
-		int yesCounter = 4; 
-		int noCounter = 2; 
+		quiz.yesCounter = 4; 
+		quiz.noCounter = 2; 
 		String result;
 		
 		quiz.yesAndNo();
@@ -24,8 +24,8 @@ class QuizResultTest {
 	@Test
 	void mostlyNoAnswers() {
 		QuizInput quiz = new QuizInput();
-		int yesCounter = 1; 
-		int noCounter = 2; 
+		quiz.yesCounter = 2; 
+		quiz.noCounter = 4; 
 		String result;
 		
 		quiz.yesAndNo();
@@ -37,8 +37,8 @@ class QuizResultTest {
 	@Test
 	void equalAnswers() {
 		QuizInput quiz = new QuizInput();
-		int yesCounter = 1; 
-		int noCounter = 2; 
+		quiz.yesCounter = 2; 
+		quiz.noCounter = 2; 
 		String result;
 		
 		quiz.yesAndNo();
