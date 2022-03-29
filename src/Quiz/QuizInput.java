@@ -1,6 +1,7 @@
 package Quiz;
 
 import java.util.Scanner;
+import Program.Program;
 
 public class QuizInput {
 	
@@ -8,6 +9,7 @@ public class QuizInput {
 	public int noCounter;
 	private String[] questions; 
 	public String result; 
+	public int quit; 
 	
 	public QuizInput() {
 		this.yesCounter = 0; 
@@ -15,18 +17,23 @@ public class QuizInput {
 		this.questions = new String[] {"Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
 				, "Do you live off campus?", "Are you in engineering?", "Do you think WashU gives off Hogwarts vibes?"};
 		this.result = "";
+		this.quit = 0; 
 	}
 
 	public void runQuiz() {
 		quizIntroduction();
 		runThroughQuestions();
-		yesAndNo();
+		if(quit == 0) {
+			yesAndNo();
+		}
 	}
 	
 	private void runThroughQuestions() {
 		for(int i=0; i < questions.length; i++) {
-			System.out.println(questions[i]); 
-			getUserInputToQuestion();
+			if(quit == 0) {
+				System.out.println(questions[i]); 
+				getUserInputToQuestion();
+			}
 		}
 	}
 	
@@ -49,13 +56,13 @@ public class QuizInput {
 	}
 
 	public void checkInput(String input) {
-		if(input == "yes") {
+		if(input.equals("yes")) {
 			yesCounter++; 
 		}
-		else if (input == "no") {
+		else if (input.equals("no")) {
 			noCounter++; 
 		}
-		else if(input == "quit") {
+		else if(input.equals("quit")) {
 			userQuitQuiz(); 
 		}
 		else {
@@ -81,20 +88,27 @@ public class QuizInput {
 	
 	private void resultOptionOne() {
 		System.out.println("Your ideal study spot on campus is Law Library!");
+//		Program program = new Program(); 
+//		program.displayActivityMenu(); 
 	}
 	
 	private void resultOptionTwo() {
 		System.out.println("Your ideal study spot on campus is Olin Library!");
+//		Program program = new Program(); 
+//		program.displayActivityMenu(); 
 	}
 
 	private void resultOptionThree() {
 		System.out.println("Your ideal study spot on campus is Bytes!");
+//		Program program = new Program(); 
+//		program.displayActivityMenu(); 
 	}
 	
 	private void userQuitQuiz() {
 		yesCounter = 0; 
 		noCounter = 0; 
 		System.out.println("You have decided to quit this quiz.");
-		return; 
+		quit++; 
+		
 	}
 }
