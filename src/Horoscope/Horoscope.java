@@ -1,32 +1,38 @@
 package Horoscope;
 
+
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
-//import horoscope.Horoscope;
 
 public class Horoscope {
 	private String sign;
 	private String element;
-	private HashMap<String, LinkedList<String>> compatibleSigns;
+	private final Map<String, LinkedList<String>> compatibleSigns = new HashMap<String, LinkedList<String>>();
+
+	
 	
 	public Horoscope(int month, int day) {
+		
 		sign = assignSign(month, day);
 		this.element = getElement();
-		compatibleSigns.put("Aries" , (LinkedList<String>) Arrays.asList(new String[] { "Gemini", "Libra", "Aquarius", "Aries","Leo", "Sagittarius"}));
-		compatibleSigns.put("Leo" , (LinkedList<String>) Arrays.asList(new String[] { "Gemini", "Libra",  "Aries","Leo", "Sagittarius"}));
-		compatibleSigns.put("Saggittarius" , (LinkedList<String>) Arrays.asList(new String[] { "Gemini", "Libra", "Aquarius", "Aries","Leo", "Sagittarius"}));
-		compatibleSigns.put("Taurus" , (LinkedList<String>) Arrays.asList(new String[] {  "Cancer", "Scorpio", "Pisces","Taurus", "Virgo", "Capricorn"}));
-		compatibleSigns.put("Virgo" , (LinkedList<String>) Arrays.asList(new String[] {  "Cancer", "Scorpio", "Taurus", "Virgo", "Capricorn"}));
-		compatibleSigns.put("Capricorn" , (LinkedList<String>) Arrays.asList(new String[] {  "Cancer", "Scorpio", "Pisces","Taurus", "Virgo", "Capricorn"}));
-		compatibleSigns.put("Gemini" , (LinkedList<String>) Arrays.asList(new String[] {  "Aries", "Leo","Gemini", "Libra", "Aquarius"}));
-		compatibleSigns.put("Libra" , (LinkedList<String>) Arrays.asList(new String[] { "Leo", "Sagittarius","Gemini", "Libra", "Aquarius"}));
-		compatibleSigns.put("Aquarius" , (LinkedList<String>) Arrays.asList(new String[] { "Aries","Leo", "Sagittarius","Gemini", "Libra", "Aquarius"}));
-		compatibleSigns.put("Cancer" , (LinkedList<String>) Arrays.asList(new String[] { "Taurus", "Virgo", "Capricorn", "Cancer", "Scorpio", "Pisces"}));
-		compatibleSigns.put("Scorpio" , (LinkedList<String>) Arrays.asList(new String[] { "Taurus", "Virgo", "Capricorn","Cancer", "Scorpio", "Pisces"}));
-		compatibleSigns.put("Pisces" , (LinkedList<String>) Arrays.asList(new String[] { "Taurus", "Capricorn","Cancer", "Scorpio", "Pisces"}));
+		this.compatibleSigns.put("Aries" , new LinkedList<String>(Arrays.asList(new String[] { "Gemini", "Libra", "Aquarius", "Aries","Leo", "Sagittarius"})));
+		this.compatibleSigns.put("Leo" , new LinkedList<String>(Arrays.asList(new String[] { "Gemini", "Libra",  "Aries","Leo", "Sagittarius"})));
+		this.compatibleSigns.put("Saggittarius" , new LinkedList<String>(Arrays.asList(new String[] { "Gemini", "Libra", "Aquarius", "Aries","Leo", "Sagittarius"})));
+		this.compatibleSigns.put("Taurus" , new LinkedList<String>(Arrays.asList(new String[] {  "Cancer", "Scorpio", "Pisces","Taurus", "Virgo", "Capricorn"})));
+		this.compatibleSigns.put("Virgo" , new LinkedList<String>(Arrays.asList(new String[] {  "Cancer", "Scorpio", "Taurus", "Virgo", "Capricorn"})));
+		this.compatibleSigns.put("Capricorn" , new LinkedList<String>(Arrays.asList(new String[] {  "Cancer", "Scorpio", "Pisces","Taurus", "Virgo", "Capricorn"})));
+		this.compatibleSigns.put("Gemini" , new LinkedList<String>(Arrays.asList(new String[] {  "Aries", "Leo","Gemini", "Libra", "Aquarius"})));
+		this.compatibleSigns.put("Libra" , new LinkedList<String>(Arrays.asList(new String[] { "Leo", "Sagittarius","Gemini", "Libra", "Aquarius"})));
+		this.compatibleSigns.put("Aquarius" , new LinkedList<String>(Arrays.asList(new String[] { "Aries","Leo", "Sagittarius","Gemini", "Libra", "Aquarius"})));
+		this.compatibleSigns.put("Cancer" , new LinkedList<String>(Arrays.asList(new String[] { "Taurus", "Virgo", "Capricorn", "Cancer", "Scorpio", "Pisces"})));
+		this.compatibleSigns.put("Scorpio" , new LinkedList<String>(Arrays.asList(new String[] { "Taurus", "Virgo", "Capricorn","Cancer", "Scorpio", "Pisces"})));
+		this.compatibleSigns.put("Pisces" , new LinkedList<String>(Arrays.asList(new String[] { "Taurus", "Capricorn","Cancer", "Scorpio", "Pisces"})));
 	}
+	
 	
 	public void printHoroscope() {
 		System.out.println(sign);
@@ -185,10 +191,10 @@ public class Horoscope {
 	}
 	
 	public String getElement(){
-		if(this.sign.equals("Aries")||this.sign.equals("Leo")||this.sign.equals("Saggittarius")){
+		if(getSign().equals("Aries")||getSign().equals("Leo")||getSign().equals("Saggittarius")){
 		return "Fire";
 		}
-		else if(this.sign.equals("Taurus")||this.sign.equals("Virgo")||this.sign.equals("Capricorn")){
+		else if(getSign().equals("Taurus")||getSign().equals("Virgo")||getSign().equals("Capricorn")){
 		return "Earth";
 		}
 		else{
@@ -199,7 +205,7 @@ public class Horoscope {
 	public boolean getCompatibility(int month, int day){
 		Horoscope compare = new Horoscope(month,day);
 		for(String sign:compatibleSigns.get(getSign())){
-		if(sign.equals(compare.getSign ())){
+		if(sign.equals(compare.getSign())){
 			return true;
 			}			
 		}
