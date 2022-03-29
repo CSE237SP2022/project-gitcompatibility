@@ -8,8 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import Horoscope.Horoscope;
 
-
-
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 class horoscopeTests {
 
@@ -34,8 +40,13 @@ class horoscopeTests {
 	}
 	
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testGetCompatibilityCompatible() {
+		assertTrue(horoscopeTest.getCompatibility(10, 11));
+	}
+	
+	@Test
+	void testGetCompatibilityNotCompatible() {
+		assertFalse(horoscopeTest.getCompatibility(7, 11));
 	}
 
 }
