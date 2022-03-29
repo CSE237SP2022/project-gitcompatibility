@@ -144,41 +144,6 @@ public class Horoscope {
 		
 		switch(this.sign) {
 		
-//		case "Aries":
-//			//todo DailyHoroscope
-//			break;
-//		case "Taurus":
-//			//todo DailyHoroscope
-//			break;
-//		case "Gemini":
-//			//todo DailyHoroscope
-//			break;
-//		case "Cancer":
-//			//todo DailyHoroscope
-//			break;
-//		case "Leo":
-//			//todo DailyHoroscope
-//			break;
-//		case "Virgo":
-//			//todo DailyHoroscope
-//			break;
-//		case "Libra":
-//			//todo DailyHoroscope
-//			break;
-//		case "Scorpio":
-//			//todo DailyHoroscope
-//			break;
-//		case "Sagittarius":
-//			//todo DailyHoroscope
-//			break;
-//		case "Capricorn":
-//			break;
-//		case "Aquarius":
-//			//todo DailyHoroscope
-//			break;
-//		case "Pisces":
-//			//todo DailyHoroscope
-//			break;
 		default:
 			System.out.println("You will have a day today");
 			break;
@@ -206,9 +171,11 @@ public class Horoscope {
 		Horoscope compare = new Horoscope(month,day);
 		for(String sign:compatibleSigns.get(getSign())){
 		if(sign.equals(compare.getSign())){
+			System.out.println(getSign() + " and " + compare.getSign() + " are a match made in heaven!<3");
 			return true;
 			}			
 		}
+		System.out.println(getSign() + " and " + compare.getSign() + " are not compatible :-(");
 		return false;
 	}
 
