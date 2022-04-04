@@ -1,5 +1,6 @@
 package Quiz;
 
+import java.util.List;
 import java.util.Scanner;
 import Program.Program;
 
@@ -7,31 +8,47 @@ public class QuizInput {
 	
 	public int yesCounter; 
 	public int noCounter;
-	private String[] questions; 
+	private String[] studySpotQuiz; 
+	private String[] quiz2;
+	private String[] quiz3;
+	private String[][] quizzes; 
 	public String result; 
 	public int quit; 
 	
 	public QuizInput() {
 		this.yesCounter = 0; 
 		this.noCounter = 0; 
-		this.questions = new String[] {"Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
+		this.studySpotQuiz = new String[] {"study spot quiz", "Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
 				, "Do you live off campus?", "Are you in engineering?", "Do you think WashU gives off Hogwarts vibes?"};
+		this.quiz2 = new String[] {"quiz2"};
+		this.quiz3 = new String[] {"quiz3"};
+		this.quizzes = new String[][] {studySpotQuiz, quiz2, quiz3}; 
 		this.result = "";
 		this.quit = 0; 
 	}
 
-	public void runQuiz() {
+	public void runQuiz(String quiz) {
+		determineQuizToRun(quiz); 
 		quizIntroduction();
-		runThroughQuestions();
+		
 		if(quit == 0) {
 			yesAndNo();
 		}
 	}
 	
-	private void runThroughQuestions() {
-		for(int i=0; i < questions.length; i++) {
+	private void determineQuizToRun(String quiz) {
+		List<String> quizNames = Program.getQuizNames(quizzes);
+		for(int i = 0; i < quizNames.size(); i++) {
+			if(quizNames[i] == quiz) { //look at iterating through list
+				//pass this index of quizzes to runThroughQuestions()
+			}
+		}
+	}
+	
+	private void runThroughQuestions(String[] quiz) {
+		for(int i=0; i < quiz.length; i++) {
 			if(quit == 0) {
-				System.out.println(questions[i]); 
+				System.out.println(quiz[i]); 
 				getUserInputToQuestion();
 			}
 		}
