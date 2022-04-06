@@ -11,7 +11,7 @@ public class QuizInput {
 	private String[] studySpotQuiz; 
 	private String[] quiz2;
 	private String[] quiz3;
-	private String[][] quizzes; 
+	public String[][] quizzes; 
 	public String result; 
 	public int quit; 
 	
