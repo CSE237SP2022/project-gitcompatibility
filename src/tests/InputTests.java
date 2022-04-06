@@ -54,6 +54,7 @@ class InputTests {
 	
 	@Test
 	void testCheckIfUserDoesGoBack() {
+		System.out.println("type 'back' to go back");
 		boolean userGoesBack = Program.checkIfUserGoesBack(scanner);
 		assertEquals(userGoesBack, true);
 	}
@@ -68,10 +69,12 @@ class InputTests {
 	
 	@Test
 	void testGetQuizInput() {
+		System.out.println("pick a quiz");
+		System.out.println(quizNames);
 		String input = Program.promptUserForQuizName(scanner, quizNames);
 		boolean isAQuizName = false;
 		if(quizNames.contains(input)) {
-			isAQuizName = false;
+			isAQuizName = true;
 		}
 		assertEquals(isAQuizName, true);
 	}
