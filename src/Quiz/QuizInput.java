@@ -28,9 +28,9 @@ public class QuizInput {
 	}
 
 	public void runQuiz(String quiz) {
-		determineQuizToRun(quiz); 
+		 
 		quizIntroduction();
-		
+		determineQuizToRun(quiz);
 		if(quit == 0) {
 			yesAndNo();
 		}
@@ -39,8 +39,8 @@ public class QuizInput {
 	private void determineQuizToRun(String quiz) {
 		List<String> quizNames = Program.getQuizNames(quizzes);
 		for(int i = 0; i < quizNames.size(); i++) {
-			if(quizNames[i] == quiz) { //look at iterating through list
-				//pass this index of quizzes to runThroughQuestions()
+			if(quizNames.get(i) == quiz) {
+				runThroughQuestions(quizzes[i]);
 			}
 		}
 	}
@@ -90,41 +90,36 @@ public class QuizInput {
 	
 	public void yesAndNo() {
 		if(yesCounter > noCounter) {
-			result = "option one";
 			resultOptionOne(); 
 		}
 		else if(yesCounter < noCounter) {
-			result = "option two";
 			resultOptionTwo();
 		}
 		else if(yesCounter == noCounter) {
-			result = "option three";
 			resultOptionThree(); 
 		}
 	}
 	
 	private void resultOptionOne() {
-		System.out.println("Your ideal study spot on campus is Law Library!");
-//		Program program = new Program(); 
-//		program.displayActivityMenu(); 
+		result = "Your ideal study spot on campus is Law Library!";
+		System.out.println(result);
 	}
 	
 	private void resultOptionTwo() {
-		System.out.println("Your ideal study spot on campus is Olin Library!");
-//		Program program = new Program(); 
-//		program.displayActivityMenu(); 
+		result = "Your ideal study spot on campus is Olin Library!";
+		System.out.println(result);
 	}
 
 	private void resultOptionThree() {
-		System.out.println("Your ideal study spot on campus is Bytes!");
-//		Program program = new Program(); 
-//		program.displayActivityMenu(); 
+		result = "Your ideal study spot on campus is Bytes!";
+		System.out.println(result);
 	}
 	
 	private void userQuitQuiz() {
 		yesCounter = 0; 
 		noCounter = 0; 
 		System.out.println("You have decided to quit this quiz.");
+		result = "";
 		quit++; 
 		
 	}
