@@ -12,7 +12,7 @@ import Program.Program;
 import Quiz.QuizInput;
 import Welcome.WelcomeInterface;
 
-class InputTests {
+class ProgramAndWelcomeTests {
 
 	Scanner scanner  = new Scanner(System.in);
 	QuizInput newQuiz = new QuizInput();
