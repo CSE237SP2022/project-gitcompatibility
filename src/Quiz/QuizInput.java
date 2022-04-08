@@ -10,9 +10,14 @@ public class QuizInput {
 	public int noCounter;
 	public int option; 
 	private String[] studySpotQuiz; 
+	private String[] studySpotQuizResults; 
 	private String[] quiz2;
+	private String[] quiz2Results;
 	private String[] quiz3;
-	public String[][] quizzes; 
+	private String[] quiz3Results;
+	private String[][] quizzes;
+	private String[][] results;
+	private String[] whichResult;
 	public String result; 
 	public int quit; 
 	
@@ -22,9 +27,11 @@ public class QuizInput {
 		this.option = 0; 
 		this.studySpotQuiz = new String[] {"study spot quiz", "Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
 				, "Do you live off campus?", "Are you in engineering?", "Do you think WashU gives off Hogwarts vibes?"};
+		this.studySpotQuizResults = new String[] {"Your ideal study spot on campus is Law Library!", "Your ideal study spot on campus is Olin Library!", "Your ideal study spot on campus is Bytes!"};
 		this.quiz2 = new String[] {"quiz2"};
 		this.quiz3 = new String[] {"quiz3"};
 		this.quizzes = new String[][] {studySpotQuiz, quiz2, quiz3}; 
+		this.results = new String[][] {studySpotQuizResults, quiz2Results, quiz3Results};
 		this.result = "";
 		this.quit = 0; 
 	}
@@ -43,12 +50,13 @@ public class QuizInput {
 		for(int i = 0; i < quizNames.size(); i++) {
 			if(quizNames.get(i) == quiz) {
 				runThroughQuestions(quizzes[i]);
+				whichResult = results[i];
 			}
 		}
 	}
 	
 	private void runThroughQuestions(String[] quiz) {
-		for(int i=0; i < quiz.length; i++) {
+		for(int i=1; i < quiz.length; i++) {
 			if(quit == 0) {
 				System.out.println(quiz[i]); 
 				getUserInputToQuestion();
@@ -106,16 +114,17 @@ public class QuizInput {
 	}
 	
 	private void resultOptionOne() {
-		
+		System.out.println(whichResult[option-1]);
 	}
 	
 	private void resultOptionTwo() {
-		
+		System.out.println(whichResult[option-1]);
 	}
 
 	private void resultOptionThree() {
-		
+		System.out.println(whichResult[option-1]);	}
 	}
+	
 	
 	private void userQuitQuiz() {
 		yesCounter = 0; 
