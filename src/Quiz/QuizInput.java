@@ -109,19 +109,15 @@ public class QuizInput {
 	}
 	
 	private void resultOptionOne() {
-		result = "Your ideal study spot on campus is Law Library!";
-		System.out.println(result);
+		System.out.println(whichResult[option-1]);
 	}
 	
 	private void resultOptionTwo() {
-		result = "Your ideal study spot on campus is Olin Library!";
-		System.out.println(result);
+		System.out.println(whichResult[option-1]);
 	}
 
 	private void resultOptionThree() {
-		result = "Your ideal study spot on campus is Bytes!";
-		System.out.println(result);
-	}
+		System.out.println(whichResult[option-1]);	}
 	
 	private void userQuitQuiz() {
 		yesCounter = 0; 
