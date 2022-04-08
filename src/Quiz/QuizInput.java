@@ -8,6 +8,7 @@ public class QuizInput {
 	
 	public int yesCounter; 
 	public int noCounter;
+	public int option; 
 	private String[] studySpotQuiz; 
 	private String[] studySpotQuizResults; 
 	private String[] quiz2;
@@ -23,6 +24,7 @@ public class QuizInput {
 	public QuizInput() {
 		this.yesCounter = 0; 
 		this.noCounter = 0; 
+		this.option = 0; 
 		this.studySpotQuiz = new String[] {"study spot quiz", "Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
 				, "Do you live off campus?", "Are you in engineering?", "Do you think WashU gives off Hogwarts vibes?"};
 		this.studySpotQuizResults = new String[] {"Your ideal study spot on campus is Law Library!", "Your ideal study spot on campus is Olin Library!", "Your ideal study spot on campus is Bytes!"};
@@ -98,13 +100,16 @@ public class QuizInput {
 	
 	public void yesAndNo() {
 		if(yesCounter > noCounter) {
+			option = 1;
 			resultOptionOne(); 
 		}
 		else if(yesCounter < noCounter) {
-			resultOptionTwo();
+			option = 2;
+			resultOptionTwo(); 
 		}
 		else if(yesCounter == noCounter) {
-			resultOptionThree(); 
+			option = 3;
+			resultOptionThree();  
 		}
 	}
 	
@@ -118,6 +123,8 @@ public class QuizInput {
 
 	private void resultOptionThree() {
 		System.out.println(whichResult[option-1]);	}
+	}
+	
 	
 	private void userQuitQuiz() {
 		yesCounter = 0; 
