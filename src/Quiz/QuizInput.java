@@ -92,32 +92,29 @@ public class QuizInput {
 	
 	public void yesAndNo() {
 		if(yesCounter > noCounter) {
+			option = 1;
 			resultOptionOne(); 
-			option = 1; 
 		}
 		else if(yesCounter < noCounter) {
-			resultOptionTwo();
-			option = 2; 
+			option = 2;
+			resultOptionTwo(); 
 		}
 		else if(yesCounter == noCounter) {
-			resultOptionThree(); 
-			option = 3; 
+			option = 3;
+			resultOptionThree();  
 		}
 	}
 	
 	private void resultOptionOne() {
-		result = "Your ideal study spot on campus is Law Library!";
-		System.out.println(result);
+		
 	}
 	
 	private void resultOptionTwo() {
-		result = "Your ideal study spot on campus is Olin Library!";
-		System.out.println(result);
+		
 	}
 
 	private void resultOptionThree() {
-		result = "Your ideal study spot on campus is Bytes!";
-		System.out.println(result);
+		
 	}
 	
 	private void userQuitQuiz() {
