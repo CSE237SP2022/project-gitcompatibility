@@ -13,10 +13,9 @@ class QuizResultTests {
 		QuizInput quiz = new QuizInput();
 		quiz.yesCounter = 4; 
 		quiz.noCounter = 2; 
-		int option;
 		
 		quiz.yesAndNo();
-		option = quiz.option;
+		int option = quiz.option;
 		
 		assertEquals(1, option); 
 	}
@@ -26,10 +25,9 @@ class QuizResultTests {
 		QuizInput quiz = new QuizInput();
 		quiz.yesCounter = 2; 
 		quiz.noCounter = 4; 
-		int option;
-		
+
 		quiz.yesAndNo();
-		option = quiz.option;
+		int option = quiz.option;
 		
 		assertEquals(2, option); 
 	}
@@ -39,10 +37,9 @@ class QuizResultTests {
 		QuizInput quiz = new QuizInput();
 		quiz.yesCounter = 2; 
 		quiz.noCounter = 2; 
-		int option;
 		
 		quiz.yesAndNo();
-		option = quiz.option;
+		int option = quiz.option;
 		
 		assertEquals(3, option);
 	}
