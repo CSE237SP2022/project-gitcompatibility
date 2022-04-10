@@ -46,6 +46,17 @@ class QuizResultTests {
 		
 		assertEquals(3, option);
 	}
+	
+	@Test 
+	void checkResults() {
+		QuizInput quiz = new QuizInput();
+		quiz.option = 1;
+		String whichResult = quiz.whichResult[quiz.option - 1];
+		
+		String result = quiz.printResult(); 
+		
+		assertEquals(whichResult, result);
+	}
 
 	
 }
