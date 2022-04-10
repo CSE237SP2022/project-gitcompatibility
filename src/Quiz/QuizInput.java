@@ -15,7 +15,7 @@ public class QuizInput {
 	private String[] quiz2Results;
 	private String[] quiz3;
 	private String[] quiz3Results;
-	private String[][] quizzes;
+	public String[][] quizzes;
 	private String[][] results;
 	private String[] whichResult;
 	public String result; 
@@ -101,30 +101,20 @@ public class QuizInput {
 	public void yesAndNo() {
 		if(yesCounter > noCounter) {
 			option = 1;
-			resultOptionOne(); 
 		}
 		else if(yesCounter < noCounter) {
 			option = 2;
-			resultOptionTwo(); 
 		}
 		else if(yesCounter == noCounter) {
-			option = 3;
-			resultOptionThree();  
+			option = 3; 
 		}
+		printResult(); 
 	}
 	
-	private void resultOptionOne() {
-		System.out.println(whichResult[option-1]);
+	private void printResult() {
+		result = whichResult[option-1];
+		System.out.println(result);
 	}
-	
-	private void resultOptionTwo() {
-		System.out.println(whichResult[option-1]);
-	}
-
-	private void resultOptionThree() {
-		System.out.println(whichResult[option-1]);	}
-	}
-	
 	
 	private void userQuitQuiz() {
 		yesCounter = 0; 
