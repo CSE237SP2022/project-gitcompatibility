@@ -53,9 +53,9 @@ class QuizResultTests {
 		quiz.option = 1;
 		String whichResult = quiz.whichResult[quiz.option - 1];
 		
-		String result = quiz.printResult(); 
+		quiz.printResult(); 
 		
-		assertEquals(whichResult, result);
+		assertEquals(whichResult, quiz.result);
 	}
 
 	

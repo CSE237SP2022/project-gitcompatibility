@@ -17,7 +17,7 @@ public class QuizInput {
 	private String[] quiz3Results;
 	public String[][] quizzes;
 	private String[][] results;
-	private String[] whichResult;
+	public String[] whichResult;
 	public String result; 
 	public int quit; 
 	
@@ -111,7 +111,7 @@ public class QuizInput {
 		printResult(); 
 	}
 	
-	private void printResult() {
+	public void printResult() {
 		result = whichResult[option-1];
 		System.out.println(result);
 	}
