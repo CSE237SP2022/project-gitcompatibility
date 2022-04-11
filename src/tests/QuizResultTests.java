@@ -59,7 +59,6 @@ class QuizResultTests {
 		
 		assertEquals(whichResult, quiz.result);
 	}
-
 	
 }
 
