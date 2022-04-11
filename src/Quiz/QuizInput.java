@@ -29,7 +29,9 @@ public class QuizInput {
 				, "Do you live off campus?", "Are you in engineering?", "Do you think WashU gives off Hogwarts vibes?"};
 		this.studySpotQuizResults = new String[] {"Your ideal study spot on campus is Law Library!", "Your ideal study spot on campus is Olin Library!", "Your ideal study spot on campus is Bytes!"};
 		this.quiz2 = new String[] {"quiz2"};
+		this.quiz2Results = new String[] {"result 1", "result 2", "result 3"};
 		this.quiz3 = new String[] {"quiz3"};
+		this.quiz3Results = new String[] {"result 1", "result 2", "result 3"};
 		this.quizzes = new String[][] {studySpotQuiz, quiz2, quiz3}; 
 		this.results = new String[][] {studySpotQuizResults, quiz2Results, quiz3Results};
 		this.result = "";
@@ -48,7 +50,7 @@ public class QuizInput {
 	private void determineQuizToRun(String quiz) {
 		List<String> quizNames = Program.getQuizNames(quizzes);
 		for(int i = 0; i < quizNames.size(); i++) {
-			if(quizNames.get(i) == quiz) {
+			if(quizNames.get(i).equals(quiz)) {
 				runThroughQuestions(quizzes[i]);
 				whichResult = results[i];
 			}
