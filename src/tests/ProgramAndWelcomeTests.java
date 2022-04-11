@@ -54,7 +54,6 @@ class ProgramAndWelcomeTests {
 	
 	@Test
 	void testCheckIfUserDoesGoBack() {
-		System.out.println("type 'back' to go back");
 		boolean userGoesBack = Program.checkIfUserGoesBack(scanner);
 		assertEquals(userGoesBack, true);
 	}
@@ -69,14 +68,18 @@ class ProgramAndWelcomeTests {
 	
 	@Test
 	void testGetQuizInput() {
-		System.out.println("pick a quiz");
-		System.out.println(quizNames);
+		Program.displayQuizMenu(scanner);
 		String input = Program.promptUserForQuizName(scanner, quizNames);
 		boolean isAQuizName = false;
 		if(quizNames.contains(input)) {
 			isAQuizName = true;
 		}
 		assertEquals(isAQuizName, true);
+	}
+	
+	@Test
+	void testCheckIfUserQuits() {
+		
 	}
 	
 

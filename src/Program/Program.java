@@ -17,11 +17,17 @@ public class Program {
 		Horoscope userHoroscope = null;
 		checkUserActivity(activity, userHoroscope, scanner);
 		while(true) {
-			if(checkIfUserGoesBack(scanner)) {
-				displayActivityMenu();
-				activity = promptUserForActivity(scanner);
-				checkUserActivity(activity, userHoroscope, scanner);
-			}
+			runProgramRepeatedly(scanner, userHoroscope);
+		}
+	}
+
+
+	public static void runProgramRepeatedly(Scanner scanner, Horoscope userHoroscope) {
+		String activity = "";
+		if(checkIfUserGoesBack(scanner)) {
+			displayActivityMenu();
+			activity = promptUserForActivity(scanner);
+			checkUserActivity(activity, userHoroscope, scanner);
 		}
 	}
 
@@ -33,6 +39,11 @@ public class Program {
 		System.out.println("Quizzes");
 	}
 	
+	public static void checkIfUserQuits(String input) {
+		if(input.equals("quit")) {
+			System.exit(0);
+		}
+	}
 	
 	public static void checkUserActivity(String activity, Horoscope userHoroscope, Scanner scanner) {
 		if(activity.toLowerCase().equals("horoscope")) {
@@ -135,6 +146,7 @@ public class Program {
 		String input = "";
 		while (!input.toLowerCase().equals("horoscope") && !input.toLowerCase().equals("compatibility calculator")
 				&& !input.toLowerCase().equals("quizzes")) {
+			checkIfUserQuits(input.toLowerCase());
 			input = scanner.nextLine();
 		}
 		return input;
