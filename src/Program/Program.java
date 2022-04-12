@@ -58,9 +58,14 @@ public class Program {
 			displayQuizMenu(scanner);
 		}
 		else if(activity.toLowerCase().equals("information")) {
-			UserInformation newUser = new UserInformation();
-			newUser.displayInformation();
+			displayUserInformation();
 		}
+	}
+
+
+	public static void displayUserInformation() {
+		UserInformation newUser = new UserInformation();
+		newUser.displayInformation();
 	}
 
 
@@ -166,7 +171,7 @@ public class Program {
 	public static String promptUserForActivity(Scanner scanner) {
 		String input = "";
 		while (!input.toLowerCase().equals("horoscope") && !input.toLowerCase().equals("compatibility calculator")
-				&& !input.toLowerCase().equals("quizzes")) {
+				&& !input.toLowerCase().equals("quizzes") && !input.toLowerCase().equals("information")){
 			checkIfUserQuits(input.toLowerCase());
 			input = scanner.nextLine();
 		}

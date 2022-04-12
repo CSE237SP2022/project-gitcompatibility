@@ -26,7 +26,7 @@ public class UserInformation {
 		System.out.println("User: " + nameOfUser);
 		System.out.println("Birthday: " + birthMonthOfUser + " / " + birthDayOfUser);
 		System.out.print("Horoscope: ");
-		horoscopeOfUser.printHoroscope();
+		printUserHoroscope();
 		System.out.println("");
 		System.out.println("Quiz Results: ");
 		printQuizResults();
@@ -37,4 +37,11 @@ public class UserInformation {
 			System.out.println(quizzes[i] + ": " + quizResults[i]);
 		}
 	}
+	
+	public void printUserHoroscope() {
+		if(horoscopeOfUser != null) {
+			horoscopeOfUser.printHoroscope();
+		}
+	}
+	
 }
