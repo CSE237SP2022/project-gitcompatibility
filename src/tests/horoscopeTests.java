@@ -97,6 +97,7 @@ private File testFile;
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
 		
 		
   	void testReadSignCharacteristics() {
