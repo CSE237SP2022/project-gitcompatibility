@@ -1,19 +1,24 @@
 package Horoscope;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
+
 
 
 public class Horoscope {
 	private String sign;
 	private String element;
 	private final Map<String, LinkedList<String>> compatibleSigns = new HashMap<String, LinkedList<String>>();
-
-	
+	private File signCharacteristicsFile;
+	private java.util.Scanner fileIn;
+	private LinkedList<String> signCharacteristics;
 	
 	public Horoscope(int month, int day) {
 		
@@ -31,9 +36,15 @@ public class Horoscope {
 		this.compatibleSigns.put("Cancer" , new LinkedList<String>(Arrays.asList(new String[] { "Taurus", "Virgo", "Capricorn", "Cancer", "Scorpio", "Pisces"})));
 		this.compatibleSigns.put("Scorpio" , new LinkedList<String>(Arrays.asList(new String[] { "Taurus", "Virgo", "Capricorn","Cancer", "Scorpio", "Pisces"})));
 		this.compatibleSigns.put("Pisces" , new LinkedList<String>(Arrays.asList(new String[] { "Taurus", "Capricorn","Cancer", "Scorpio", "Pisces"})));
+		this.signCharacteristicsFile = new File("src/signCharacteristics.txt");
+		try {
+			this.fileIn = new Scanner(signCharacteristicsFile);
+		} catch (FileNotFoundException e) {
+			System.out.println("this file is not found");
+		}
+		this.signCharacteristics = new LinkedList<String>();
 	}
-	
-	
+
 	public void printHoroscope() {
 		System.out.println(sign);
 		this.getDailyHoroscope();
@@ -177,6 +188,45 @@ public class Horoscope {
 		}
 		System.out.println(getSign() + " and " + compare.getSign() + " are not compatible :-(");
 		return false;
+	}
+	
+	public void readSignCharacteristics() {
+
+			while(fileIn.hasNextLine()) {
+				String searchFile = fileIn.nextLine();
+				if (checkLineForWord(searchFile)) {
+					this.signCharacteristics.add(searchFile);
+					getNextLines();
+					break;
+				}
+			}			
+			
+	}
+	
+	public LinkedList<String> getSignCharacteristics() {
+		return this.signCharacteristics;
+	}
+	
+	public void printSignCharacteristics() {
+		for(String line:signCharacteristics){
+			System.out.println(line);
+		}
+	}
+	
+	public boolean checkLineForWord(String searchFile) {
+		
+			if (searchFile.equals(this.getSign())) {
+				return true;
+			}
+			return false;
+	}
+	
+	public void getNextLines() {
+		for(int i=0; i<5; ++i) {
+			String line = fileIn.nextLine();
+			this.signCharacteristics.add(line);
+			
+		}
 	}
 
 }
