@@ -161,6 +161,9 @@ public class Program {
 		System.out.println("Birthday: " );
 		System.out.println("Horoscope: " );
 		System.out.println("Quiz Results: " );
+		System.out.println("Quiz 1: " + ", Result: " );
+		System.out.println("Quiz 2: " + ", Result: " );
+		System.out.println("Quiz 3: " + ", Result: " );
 	}
 
 }
