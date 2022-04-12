@@ -37,6 +37,7 @@ public class Program {
 		System.out.println("Horoscope");
 		System.out.println("Compatibility Calculator");
 		System.out.println("Quizzes");
+		System.out.println("Information");
 	}
 	
 	public static void checkIfUserQuits(String input) {
@@ -54,6 +55,9 @@ public class Program {
 		}
 		else if (activity.toLowerCase().equals("quizzes")) {
 			displayQuizMenu(scanner);
+		}
+		else if(activity.toLowerCase().equals("Information")) {
+			displayInformation(userHoroscope);
 		}
 	}
 
@@ -150,6 +154,13 @@ public class Program {
 			input = scanner.nextLine();
 		}
 		return input;
+	}
+	
+	public static void displayInformation(Horoscope userHoroscope) {
+		System.out.println("User: " );
+		System.out.println("Birthday: " );
+		System.out.println("Horoscope: " );
+		System.out.println("Quiz Results: " );
 	}
 
 }
