@@ -1,5 +1,6 @@
 package Quiz;
 
+import java.util.List;
 import java.util.Scanner;
 import Program.Program;
 
@@ -7,31 +8,59 @@ public class QuizInput {
 	
 	public int yesCounter; 
 	public int noCounter;
-	private String[] questions; 
+	public int option; 
+	private String[] studySpotQuiz; 
+	private String[] studySpotQuizResults; 
+	private String[] quiz2;
+	private String[] quiz2Results;
+	private String[] quiz3;
+	private String[] quiz3Results;
+	public String[][] quizzes;
+	private String[][] results;
+	public String[] whichResult;
 	public String result; 
 	public int quit; 
 	
 	public QuizInput() {
 		this.yesCounter = 0; 
 		this.noCounter = 0; 
-		this.questions = new String[] {"Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
+		this.option = 0; 
+		this.studySpotQuiz = new String[] {"study spot quiz", "Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
 				, "Do you live off campus?", "Are you in engineering?", "Do you think WashU gives off Hogwarts vibes?"};
+		this.studySpotQuizResults = new String[] {"Your ideal study spot on campus is Law Library!", "Your ideal study spot on campus is Olin Library!", "Your ideal study spot on campus is Bytes!"};
+		this.quiz2 = new String[] {"quiz2"};
+		this.quiz2Results = new String[] {"result 1", "result 2", "result 3"};
+		this.quiz3 = new String[] {"quiz3"};
+		this.quiz3Results = new String[] {"result 1", "result 2", "result 3"};
+		this.quizzes = new String[][] {studySpotQuiz, quiz2, quiz3}; 
+		this.results = new String[][] {studySpotQuizResults, quiz2Results, quiz3Results};
 		this.result = "";
 		this.quit = 0; 
 	}
 
-	public void runQuiz() {
+	public void runQuiz(String quiz) {
+		 
 		quizIntroduction();
-		runThroughQuestions();
+		determineQuizToRun(quiz);
 		if(quit == 0) {
 			yesAndNo();
 		}
 	}
 	
-	private void runThroughQuestions() {
-		for(int i=0; i < questions.length; i++) {
+	private void determineQuizToRun(String quiz) {
+		List<String> quizNames = Program.getQuizNames(quizzes);
+		for(int i = 0; i < quizNames.size(); i++) {
+			if(quizNames.get(i).equals(quiz)) {
+				runThroughQuestions(quizzes[i]);
+				whichResult = results[i];
+			}
+		}
+	}
+	
+	private void runThroughQuestions(String[] quiz) {
+		for(int i=1; i < quiz.length; i++) {
 			if(quit == 0) {
-				System.out.println(questions[i]); 
+				System.out.println(quiz[i]); 
 				getUserInputToQuestion();
 			}
 		}
@@ -73,41 +102,27 @@ public class QuizInput {
 	
 	public void yesAndNo() {
 		if(yesCounter > noCounter) {
-			result = "option one";
-			resultOptionOne(); 
+			option = 1;
 		}
 		else if(yesCounter < noCounter) {
-			result = "option two";
-			resultOptionTwo();
+			option = 2;
 		}
 		else if(yesCounter == noCounter) {
-			result = "option three";
-			resultOptionThree(); 
+			option = 3; 
 		}
+		printResult(); 
 	}
 	
-	private void resultOptionOne() {
-		System.out.println("Your ideal study spot on campus is Law Library!");
-//		Program program = new Program(); 
-//		program.displayActivityMenu(); 
-	}
-	
-	private void resultOptionTwo() {
-		System.out.println("Your ideal study spot on campus is Olin Library!");
-//		Program program = new Program(); 
-//		program.displayActivityMenu(); 
-	}
-
-	private void resultOptionThree() {
-		System.out.println("Your ideal study spot on campus is Bytes!");
-//		Program program = new Program(); 
-//		program.displayActivityMenu(); 
+	public void printResult() {
+		result = whichResult[option-1];
+		System.out.println(result);
 	}
 	
 	private void userQuitQuiz() {
 		yesCounter = 0; 
 		noCounter = 0; 
 		System.out.println("You have decided to quit this quiz.");
+		result = "";
 		quit++; 
 		
 	}

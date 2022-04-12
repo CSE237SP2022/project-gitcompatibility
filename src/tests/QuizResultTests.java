@@ -1,4 +1,4 @@
-package QuizTests;
+package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -13,12 +13,11 @@ class QuizResultTests {
 		QuizInput quiz = new QuizInput();
 		quiz.yesCounter = 4; 
 		quiz.noCounter = 2; 
-		String result;
 		
 		quiz.yesAndNo();
-		result = quiz.result;
+		int option = quiz.option;
 		
-		assertEquals("option one", result); 
+		assertEquals(1, option); 
 	}
 	
 	@Test
@@ -26,12 +25,11 @@ class QuizResultTests {
 		QuizInput quiz = new QuizInput();
 		quiz.yesCounter = 2; 
 		quiz.noCounter = 4; 
-		String result;
-		
+
 		quiz.yesAndNo();
-		result = quiz.result;
+		int option = quiz.option;
 		
-		assertEquals("option two", result); 
+		assertEquals(2, option); 
 	}
 	
 	@Test
@@ -39,13 +37,24 @@ class QuizResultTests {
 		QuizInput quiz = new QuizInput();
 		quiz.yesCounter = 2; 
 		quiz.noCounter = 2; 
-		String result;
 		
 		quiz.yesAndNo();
-		result = quiz.result;
+		int option = quiz.option;
 		
-		assertEquals("option three", result); 
+		assertEquals(3, option);
+	}
+	
+	@Test 
+	void checkResults() {
+		QuizInput quiz = new QuizInput();
+		quiz.option = 1;
+		String whichResult = quiz.whichResult[quiz.option - 1];
+		
+		quiz.printResult(); 
+		
+		assertEquals(whichResult, quiz.result);
 	}
 
+	
 }
 
