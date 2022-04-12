@@ -57,7 +57,7 @@ public class Program {
 		else if (activity.toLowerCase().equals("quizzes")) {
 			displayQuizMenu(scanner);
 		}
-		else if(activity.toLowerCase().equals("Information")) {
+		else if(activity.toLowerCase().equals("information")) {
 			UserInformation newUser = new UserInformation();
 			newUser.displayInformation();
 		}
