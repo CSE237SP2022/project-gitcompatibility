@@ -7,9 +7,10 @@ import java.util.Scanner;
 import Welcome.WelcomeInterface;
 import Horoscope.Horoscope;
 import Quiz.QuizInput;
+import UserInformation.UserInformation;
 
 public class Program {
-
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		WelcomeInterface.main(args);
@@ -57,7 +58,8 @@ public class Program {
 			displayQuizMenu(scanner);
 		}
 		else if(activity.toLowerCase().equals("Information")) {
-			displayInformation(userHoroscope);
+			UserInformation newUser = new UserInformation();
+			newUser.displayInformation();
 		}
 	}
 
@@ -72,6 +74,7 @@ public class Program {
 		}
 		String quizName = promptUserForQuizName(scanner, quizNames);
 		newQuiz.runQuiz(quizName);
+		addQuizNameAndResult(quizName, newQuiz.result);
 	}
 		
 		
@@ -89,9 +92,19 @@ public class Program {
 		while (!quizNames.contains(input.toLowerCase())) {
 			input = scanner.nextLine();
 		}
+		
 		return input;
 	}
-
+	
+	public static void addQuizNameAndResult(String name, String result) {
+		UserInformation newUser = new UserInformation();
+		for(int i = 0; i < newUser.quizzes.length; i++) {
+			if(newUser.quizzes[i].equals("unknown")) {
+				newUser.quizzes[i] = name;
+				newUser.quizResults[i] = result;
+			}
+		}
+	}
 
 	public static void getCompatibility(Horoscope userHoroscope, Scanner scanner) {
 		if (userHoroscope == null) {
@@ -125,6 +138,10 @@ public class Program {
 		int month = promptUserForBirthMonth(scanner);
 		int day = promptUserForBirthDay(scanner); 
 		userHoroscope = new Horoscope(month, day);
+		UserInformation newUser = new UserInformation(); 
+		newUser.birthDayOfUser = day;
+		newUser.birthMonthOfUser = month; 
+		newUser.horoscopeOfUser = userHoroscope;
 		return userHoroscope;
 	}
 	
@@ -154,16 +171,6 @@ public class Program {
 			input = scanner.nextLine();
 		}
 		return input;
-	}
-	
-	public static void displayInformation(Horoscope userHoroscope) {
-		System.out.println("User: " );
-		System.out.println("Birthday: " );
-		System.out.println("Horoscope: " );
-		System.out.println("Quiz Results: " );
-		System.out.println("Quiz 1: " + ", Result: " );
-		System.out.println("Quiz 2: " + ", Result: " );
-		System.out.println("Quiz 3: " + ", Result: " );
 	}
 
 }
