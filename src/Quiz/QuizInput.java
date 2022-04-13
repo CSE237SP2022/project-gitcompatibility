@@ -11,10 +11,10 @@ public class QuizInput {
 	public int option; 
 	private String[] studySpotQuiz; 
 	private String[] studySpotQuizResults; 
-	private String[] quiz2;
-	private String[] quiz2Results;
-	private String[] quiz3;
-	private String[] quiz3Results;
+	private String[] livingSpaceQuiz;
+	private String[] livingSpaceQuizResults;
+	private String[] idealWeatherQuiz;
+	private String[] idealWeatherResults;
 	public String[][] quizzes;
 	private String[][] results;
 	public String[] whichResult;
@@ -28,12 +28,12 @@ public class QuizInput {
 		this.studySpotQuiz = new String[] {"study spot quiz", "Do you study during the day?", "Do you like quiet study spaces?", "Are study aesthetics important to you?"
 				, "Do you live off campus?", "Are you in engineering?", "Do you think WashU gives off Hogwarts vibes?"};
 		this.studySpotQuizResults = new String[] {"Your ideal study spot on campus is Law Library!", "Your ideal study spot on campus is Olin Library!", "Your ideal study spot on campus is Bytes!"};
-		this.quiz2 = new String[] {"quiz2"};
-		this.quiz2Results = new String[] {"result 1", "result 2", "result 3"};
-		this.quiz3 = new String[] {"quiz3"};
-		this.quiz3Results = new String[] {"result 1", "result 2", "result 3"};
-		this.quizzes = new String[][] {studySpotQuiz, quiz2, quiz3}; 
-		this.results = new String[][] {studySpotQuizResults, quiz2Results, quiz3Results};
+		this.livingSpaceQuiz = new String[] {"living space quiz", "Are you a Junior / Senior?", "Do you live off campus?", "Do you have a car?", "Do you have a pet?", "Do you have a job?", "Do you have roomates?"};
+		this.livingSpaceQuizResults = new String[] {"You should live in the Central West End!", "You should live in the Lofts!", "You should live in Village East!"};
+		this.idealWeatherQuiz = new String[] {"ideal weather quiz", "Do you like the beach?", "Is your favorite season Summer?", "Do you spend time outside?", "Do you like lazy, rainy days?", "Do you like fruit?", "Have you been to Art Hill more than two times?"};
+		this.idealWeatherResults = new String[] {"Your perfect day is a hot, sunny summer day!", "Your perfect day is a snowy winter day sledding down Art Hill!", "Your perfect day is a crisp fall day when the leaves are changing colors!"};
+		this.quizzes = new String[][] {studySpotQuiz, livingSpaceQuiz, idealWeatherQuiz}; 
+		this.results = new String[][] {studySpotQuizResults, livingSpaceQuizResults, idealWeatherResults};
 		this.result = "";
 		this.quit = 0; 
 	}
@@ -127,3 +127,4 @@ public class QuizInput {
 		
 	}
 }
+
