@@ -30,7 +30,7 @@ class ProgramAndWelcomeTests {
 	void testGetUserActivity() {
 		Program.displayActivityMenu();
 		String input = Program.promptUserForActivity(scanner);
-		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes") || input.toLowerCase().equals("information"));
+		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes"));
 	}
 	
 	@Test
@@ -77,6 +77,10 @@ class ProgramAndWelcomeTests {
 		assertEquals(isAQuizName, true);
 	}
 	
+	@Test
+	void testCheckIfUserQuits() {
+		
+	}
 	
 
 }
