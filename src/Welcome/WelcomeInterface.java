@@ -2,6 +2,8 @@ package Welcome;
 
 import java.util.Scanner;
 
+import UserInformation.UserInformation;
+
 public class WelcomeInterface {
 
 	public static void main(String[] args) {
@@ -16,6 +18,8 @@ public class WelcomeInterface {
 		while (input == "") {
 			input = scanner.nextLine();
 		}
+		UserInformation newUser = new UserInformation();
+		newUser.nameOfUser = input;
 		return input;
 	}
 
@@ -27,5 +31,6 @@ public class WelcomeInterface {
 		System.out.println("Horoscope");
 		System.out.println("Compatibility Calculator");
 		System.out.println("Quizzes");
+		System.out.println("Information");
 	}
 }
