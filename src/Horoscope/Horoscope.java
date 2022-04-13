@@ -55,11 +55,13 @@ public class Horoscope {
 			System.out.println("this file is not found");
 		}
 		this.signCharacteristics = new LinkedList<String>();
+		readSignCharacteristics();
 	}
 
 	public void printHoroscope() {
 		System.out.println(sign);
 		System.out.println(this.dailyHoroscope);	
+		printSignCharacteristics();
 	}
 
 	private String assignSign(int month, int day){	
