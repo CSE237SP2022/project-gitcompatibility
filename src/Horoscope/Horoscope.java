@@ -188,6 +188,7 @@ public class Horoscope {
 			return words;
 
 		} catch (IOException e) {
+			
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -289,7 +290,7 @@ private List<String> makeRandomPlanetList() {
 	}
 	
 	public void getNextLines() {
-		for(int i=0; i<5; ++i) {
+		for(int i=0; i<4; ++i) {
 			String line = fileIn.nextLine();
 			this.signCharacteristics.add(line);
 			
