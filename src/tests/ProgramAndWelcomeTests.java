@@ -12,7 +12,7 @@ import Program.Program;
 import Quiz.QuizInput;
 import Welcome.WelcomeInterface;
 
-class InputTests {
+class ProgramAndWelcomeTests {
 
 	Scanner scanner  = new Scanner(System.in);
 	QuizInput newQuiz = new QuizInput();
@@ -30,7 +30,7 @@ class InputTests {
 	void testGetUserActivity() {
 		Program.displayActivityMenu();
 		String input = Program.promptUserForActivity(scanner);
-		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes"));
+		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes") || input.toLowerCase().equals("information"));
 	}
 	
 	@Test
@@ -68,13 +68,15 @@ class InputTests {
 	
 	@Test
 	void testGetQuizInput() {
+		Program.displayQuizMenu(scanner);
 		String input = Program.promptUserForQuizName(scanner, quizNames);
 		boolean isAQuizName = false;
 		if(quizNames.contains(input)) {
-			isAQuizName = false;
+			isAQuizName = true;
 		}
 		assertEquals(isAQuizName, true);
 	}
+	
 	
 
 }

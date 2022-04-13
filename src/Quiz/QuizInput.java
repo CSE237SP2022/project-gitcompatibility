@@ -50,7 +50,7 @@ public class QuizInput {
 	private void determineQuizToRun(String quiz) {
 		List<String> quizNames = Program.getQuizNames(quizzes);
 		for(int i = 0; i < quizNames.size(); i++) {
-			if(quizNames.get(i) == quiz) {
+			if(quizNames.get(i).equals(quiz)) {
 				runThroughQuestions(quizzes[i]);
 				whichResult = results[i];
 			}
