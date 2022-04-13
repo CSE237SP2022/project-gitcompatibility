@@ -1,7 +1,7 @@
 package UserInformation;
 
 import Horoscope.Horoscope;
-
+ 
 
 public class UserInformation {
 	
