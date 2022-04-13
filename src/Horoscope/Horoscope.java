@@ -177,8 +177,8 @@ public class Horoscope {
 	}  
 
 
-	private List<String> makeList(File myFile) throws FileNotFoundException {	
-	
+	private List<String> makeList(File myFile) {	
+		try {
 
 			Scanner myReader = new Scanner(myFile);
 			String line = myReader.nextLine();
@@ -190,7 +190,11 @@ public class Horoscope {
 			}
 			return words;
 
-		 
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		return null;
 	}
 
 	public String getRandomWordFromList(List<String> wordList) {
