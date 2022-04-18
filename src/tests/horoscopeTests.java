@@ -52,7 +52,7 @@ private File testFile;
 	
 	@Test
 	void testGetElement() {
-		String ariesElement = horoscopeTest.getElement();//test a method
+		String ariesElement = horoscopeTest.setElement();//test a method
 		assertTrue("Fire".equals(ariesElement));
 	}
 	

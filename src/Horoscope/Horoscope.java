@@ -18,20 +18,23 @@ import java.util.Scanner;
 
 
 public class Horoscope {
+	public int day;
+	public int month;
 	private String sign;
 	private String element;
 	private final Map<String, LinkedList<String>> compatibleSigns = new HashMap<String, LinkedList<String>>();
-  private File signCharacteristicsFile;
+	private File signCharacteristicsFile;
 	private java.util.Scanner fileIn;
 	private LinkedList<String> signCharacteristics;
-  private List<String> adjectives = new ArrayList<String>();
+	private List<String> adjectives = new ArrayList<String>();
 	private List<String> planets = new ArrayList<String>();
 	String dailyHoroscope;
 
 	public Horoscope(int month, int day) {
-
+		this.month = month;
+		this.day = day;
 		sign = assignSign(month, day);
-		this.element = getElement();
+		this.element = setElement();
 		File adjFile = new File("src/adjectives.txt");
 		this.adjectives = makeList(adjFile);
 		File planetList = new File("src/planets.txt");
@@ -64,6 +67,63 @@ public class Horoscope {
 		System.out.println(sign);
 		System.out.println(this.dailyHoroscope);	
 		printSignCharacteristics();
+	}
+	
+	private int setDayDeterminer(int month, int day) {
+		Map<Integer, Integer> monthCutOffday = new HashMap<Integer, Integer>();
+		monthCutOffday.put(1, null);
+		monthCutOffday.put(2, null);
+		monthCutOffday.put(3, null);
+		monthCutOffday.put(4, null);
+		monthCutOffday.put(5, null);
+		monthCutOffday.put(6, null);
+		monthCutOffday.put(7, null);
+		monthCutOffday.put(8, null);
+		monthCutOffday.put(9, null);
+		monthCutOffday.put(10, null);
+		monthCutOffday.put(11, null);
+		monthCutOffday.put(12, null);
+		return 0;
+//		switch(month) {
+//		case 3,5,6: //21
+//			if(day < 21) {
+//				return 1;
+//			}
+//			else {
+//				return 2;
+//			}
+//		case 4,1:  //20
+//			if(day < 20) {
+//				return 1;
+//			}
+//			else {
+//				return 2;
+//			}
+//			
+//		case 7,8,9,10:  //23
+//			if(day < 23) {
+//				return 1;
+//			}
+//			else {
+//				return 2;
+//			}
+//		
+//		case 11,12:	 //22
+//			if(day < 22) {
+//				return 1;
+//			}
+//			else {
+//				return 2;
+//			}
+//		case 2:
+//			if(day < 19) {
+//				return 1;
+//			}
+//			else {
+//				return 2;
+//			}
+//		}
+//		return 0;
 	}
 
 	private String assignSign(int month, int day){	
@@ -173,7 +233,6 @@ public class Horoscope {
 
 	}  
 	
-
 	private List<String> makeList(File myFile) {
 		
 		
@@ -207,11 +266,20 @@ public class Horoscope {
 		return sign;
 	}
 	
+	
 	public List<String> getAdjectivesList() {
 		return this.adjectives;
 	}
+	
+	public String getDailyHoroscope() {
+		return this.dailyHoroscope;
+	}
+	
+	public String getElement() {
+		return this.element;
+	}
 
-	public String getElement(){
+	private String setElement(){
 		if(getSign().equals("Aries")||getSign().equals("Leo")||getSign().equals("Saggittarius")){
 			return "Fire";
 		}
