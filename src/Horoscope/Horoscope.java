@@ -32,8 +32,10 @@ public class Horoscope {
 
 		sign = assignSign(month, day);
 		this.element = getElement();
-		this.adjectives = makeRandomAdjectiveList();
-		this.planets = makeRandomPlanetList();
+		File adjFile = new File("src/adjectives.txt");
+		this.adjectives = makeList(adjFile);
+		File planetList = new File("src/planets.txt");
+		this.planets = makeList(planetList);
 		dailyHoroscope = setDailyHoroscope();
 		
 		this.compatibleSigns.put("Aries" , new LinkedList<String>(Arrays.asList(new String[] { "Gemini", "Libra", "Aquarius", "Aries","Leo", "Sagittarius"})));
@@ -172,9 +174,9 @@ public class Horoscope {
 	}  
 	
 
-	private List<String> makeRandomAdjectiveList() {
+	private List<String> makeList(File myFile) {
 		
-		File myFile = new File("src/adjectives.txt");
+		
 		try {
 			
 			Scanner myReader = new Scanner(myFile);
@@ -189,31 +191,6 @@ public class Horoscope {
 
 		} catch (IOException e) {
 			
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return null;
-	}
-	
-private List<String> makeRandomPlanetList() {
-		
-		File myFile = new File("src/planets.txt");
-		try {
-			
-			Scanner myReader = new Scanner(myFile);
-			String line = myReader.nextLine();
-
-			List<String> words = new ArrayList<String>();
-			while( myReader.hasNextLine()) {		    	
-				words.add(line);
-				line = myReader.nextLine();;
-			}
-			return words;
-
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -35,6 +35,8 @@ class QuizResultTests {
 	@Test
 	void equalAnswers() {
 		QuizInput quiz = new QuizInput();
+		String quizName = "studyStopQuiz";
+		quiz.runQuiz(quizName);
 		quiz.yesCounter = 2; 
 		quiz.noCounter = 2; 
 		
@@ -54,7 +56,6 @@ class QuizResultTests {
 		
 		assertEquals(whichResult, quiz.result);
 	}
-
 	
 }
 
