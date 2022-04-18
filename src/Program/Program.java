@@ -11,29 +11,38 @@ import UserInformation.UserInformation;
 
 public class Program {
 	
+	public Horoscope userHoroscope; 
+	public UserInformation newUser;
+
+	
+	public Program() {
+		this.userHoroscope = null;
+		this.newUser = null;
+	}
+	
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
+		Program program = new Program();
 		WelcomeInterface.main(args);
-		String activity = promptUserForActivity(scanner);
-		Horoscope userHoroscope = null;
-		checkUserActivity(activity, userHoroscope, scanner);
+		String activity = program.promptUserForActivity(scanner);
+		program.checkUserActivity(activity, scanner);
 		while(true) {
-			runProgramRepeatedly(scanner, userHoroscope);
+			program.runProgramRepeatedly(scanner);
 		}
 	}
 
 
-	public static void runProgramRepeatedly(Scanner scanner, Horoscope userHoroscope) {
+	public void runProgramRepeatedly(Scanner scanner) {
 		String activity = "";
 		if(checkIfUserGoesBack(scanner)) {
 			displayActivityMenu();
 			activity = promptUserForActivity(scanner);
-			checkUserActivity(activity, userHoroscope, scanner);
+			checkUserActivity(activity, scanner);
 		}
 	}
 
 
-	public static void displayActivityMenu() {
+	public void displayActivityMenu() {
 		System.out.println("What do you want to do next?");
 		System.out.println("Horoscope");
 		System.out.println("Compatibility Calculator");
@@ -41,18 +50,18 @@ public class Program {
 		System.out.println("Information");
 	}
 	
-	public static void checkIfUserQuits(String input) {
+	public void checkIfUserQuits(String input) {
 		if(input.equals("quit")) {
 			System.exit(0);
 		}
 	}
 	
-	public static void checkUserActivity(String activity, Horoscope userHoroscope, Scanner scanner) {
+	public void checkUserActivity(String activity, Scanner scanner) {
 		if(activity.toLowerCase().equals("horoscope")) {
-			getUserHoroscope(userHoroscope, scanner);
+			getUserHoroscope(scanner);
 		}
 		else if (activity.toLowerCase().equals("compatibility calculator")) {
-			getCompatibility(userHoroscope, scanner);
+			getCompatibility(scanner);
 		}
 		else if (activity.toLowerCase().equals("quizzes")) {
 			displayQuizMenu(scanner);
@@ -63,13 +72,18 @@ public class Program {
 	}
 
 
-	public static void displayUserInformation() {
-		UserInformation newUser = new UserInformation();
-		newUser.displayInformation();
+	public void displayUserInformation() {
+		if(!checkIfUserInformationExists()) {
+			createUserInformation();
+		}
+		this.newUser.displayInformation();
 	}
 
+	public void createUserInformation() {
+		this.newUser = new UserInformation(this.userHoroscope);
+	}
 
-	public static void displayQuizMenu(Scanner scanner) {
+	public void displayQuizMenu(Scanner scanner) {
 		System.out.println("Which quiz would you like to take?");
 		QuizInput newQuiz = new QuizInput();
 		String[][] quizzes = newQuiz.quizzes;
@@ -92,7 +106,7 @@ public class Program {
 	}
 
 	
-	public static String promptUserForQuizName(Scanner scanner, List<String> quizNames) {
+	public String promptUserForQuizName(Scanner scanner, List<String> quizNames) {
 		String input = "";
 		while (!quizNames.contains(input.toLowerCase())) {
 			input = scanner.nextLine();
@@ -101,33 +115,44 @@ public class Program {
 		return input;
 	}
 	
-	public static void addQuizNameAndResult(String name, String result) {
-		UserInformation newUser = new UserInformation();
-		for(int i = 0; i < newUser.quizzes.length; i++) {
-			if(newUser.quizzes[i].equals("unknown")) {
-				newUser.quizzes[i] = name;
-				newUser.quizResults[i] = result;
+	public void addQuizNameAndResult(String name, String result) {
+		if(!checkIfUserInformationExists()) {
+			createUserInformation();
+		}
+		for(int i = 0; i < this.newUser.quizzes.length; i++) {
+			if(this.newUser.quizzes[i].equals("unknown")) {
+				this.newUser.quizzes[i] = name;
+				this.newUser.quizResults[i] = result;
 			}
 		}
 	}
+	
+	public boolean checkIfUserInformationExists() {
+		if(this.newUser == null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
-	public static void getCompatibility(Horoscope userHoroscope, Scanner scanner) {
-		if (userHoroscope == null) {
-			userHoroscope = createUserHoroscope(userHoroscope, scanner);
+	public void getCompatibility(Scanner scanner) {
+		if (this.userHoroscope == null) {
+			createUserHoroscope(scanner);
 		}
 		System.out.println("Enter the other person's birthday: ");
 		int month = promptUserForBirthMonth(scanner);
 		int day = promptUserForBirthDay(scanner);
-		userHoroscope.getCompatibility(month, day);
+		this.userHoroscope.getCompatibility(month, day);
 	}
 
 
-	public static void getUserHoroscope(Horoscope userHoroscope, Scanner scanner) {
-		userHoroscope = createUserHoroscope(userHoroscope, scanner);
-		userHoroscope.printHoroscope();
+	public void getUserHoroscope(Scanner scanner) {
+		createUserHoroscope(scanner);
+		this.userHoroscope.printHoroscope();
 	}
 	
-	public static boolean checkIfUserGoesBack(Scanner scanner) {
+	public boolean checkIfUserGoesBack(Scanner scanner) {
 		String input = "";
 		boolean userGoesBack = false;
 		while(!input.toLowerCase().equals("back")) {
@@ -138,19 +163,14 @@ public class Program {
 		return userGoesBack;
 	}
 	
-	public static Horoscope createUserHoroscope(Horoscope userHoroscope, Scanner scanner) {
+	public void createUserHoroscope(Scanner scanner) {
 		System.out.println("Enter your birthday: ");
 		int month = promptUserForBirthMonth(scanner);
 		int day = promptUserForBirthDay(scanner); 
-		userHoroscope = new Horoscope(month, day);
-		UserInformation newUser = new UserInformation(); 
-		newUser.birthDayOfUser = day;
-		newUser.birthMonthOfUser = month; 
-		newUser.horoscopeOfUser = userHoroscope;
-		return userHoroscope;
+		this.userHoroscope = new Horoscope(month, day);
 	}
 	
-	public static int promptUserForBirthMonth(Scanner scanner) {
+	public int promptUserForBirthMonth(Scanner scanner) {
 		System.out.println("Birth month? (1-12)");
 		int month = 0;
 		while(month < 1 || month > 12) {
@@ -159,7 +179,7 @@ public class Program {
 		return month;
 	}
 	
-	public static int promptUserForBirthDay(Scanner scanner) {
+	public int promptUserForBirthDay(Scanner scanner) {
 		System.out.println("Birth day? (1-31)");
 		int day = 0;
 		while(day < 1 || day > 31 ) {
@@ -168,7 +188,7 @@ public class Program {
 		return day;
 	}
 
-	public static String promptUserForActivity(Scanner scanner) {
+	public String promptUserForActivity(Scanner scanner) {
 		String input = "";
 		while (!input.toLowerCase().equals("horoscope") && !input.toLowerCase().equals("compatibility calculator")
 				&& !input.toLowerCase().equals("quizzes") && !input.toLowerCase().equals("information")){
