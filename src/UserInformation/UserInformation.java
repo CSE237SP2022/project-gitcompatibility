@@ -13,11 +13,11 @@ public class UserInformation {
 	public String[] quizResults;
 
 	
-	public UserInformation() {
+	public UserInformation(Horoscope userHoroscope) {
 		this.nameOfUser = "unknown";
 		this.birthMonthOfUser = 0; 
 		this.birthDayOfUser = 0; 
-		this.horoscopeOfUser = null;
+		this.horoscopeOfUser = userHoroscope;
 		this.quizzes = new String[] {"unknown", "unknown", "unknown"};
 		this.quizResults = new String[] {"unknown", "unknown", "unknown"};
 	}
