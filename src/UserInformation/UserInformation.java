@@ -15,8 +15,8 @@ public class UserInformation {
 	
 	public UserInformation(Horoscope userHoroscope) {
 		this.nameOfUser = "unknown";
-		this.birthMonthOfUser = 0; 
-		this.birthDayOfUser = 0; 
+		this.birthMonthOfUser = userHoroscope.month; 
+		this.birthDayOfUser = userHoroscope.day; 
 		this.horoscopeOfUser = userHoroscope;
 		this.quizzes = new String[] {"unknown", "unknown", "unknown"};
 		this.quizResults = new String[] {"unknown", "unknown", "unknown"};
@@ -24,8 +24,6 @@ public class UserInformation {
 
 	public void displayInformation() {
 		System.out.println("User: " + nameOfUser);
-		System.out.println("Birthday: " + birthMonthOfUser + " / " + birthDayOfUser);
-		System.out.print("Horoscope: ");
 		printUserHoroscope();
 		System.out.println("");
 		System.out.println("Quiz Results: ");
@@ -40,7 +38,13 @@ public class UserInformation {
 	
 	public void printUserHoroscope() {
 		if(horoscopeOfUser != null) {
+			System.out.println("Birthday: " + birthMonthOfUser + " / " + birthDayOfUser);
+			System.out.print("Horoscope: ");
 			horoscopeOfUser.printHoroscope();
+		}
+		else {
+			System.out.println("Birthday: ");
+			System.out.println("Horoscope: ");
 		}
 	}
 	
