@@ -34,7 +34,7 @@ public class QuizInput {
 		this.quiz3Results = new String[] {"result 1", "result 2", "result 3"};
 		this.quizzes = new String[][] {studySpotQuiz, quiz2, quiz3}; 
 		this.results = new String[][] {studySpotQuizResults, quiz2Results, quiz3Results};
-		this.result = "";
+		this.result = "unknown";
 		this.quit = 0; 
 	}
 
@@ -125,5 +125,9 @@ public class QuizInput {
 		result = "";
 		quit++; 
 		
+	}
+	
+	public String getResult() {
+		return result;
 	}
 }
