@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.List;
 import java.util.Scanner;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import Horoscope.Horoscope;
@@ -18,6 +19,13 @@ class ProgramAndWelcomeTests {
 	QuizInput newQuiz = new QuizInput();
 	String[][] quizzes = newQuiz.quizzes;
 	List<String> quizNames = Program.getQuizNames(quizzes);
+	Program program = new Program();
+	
+	@BeforeEach
+	void resetFields() {
+		program.userHoroscope = null;
+		program.newUser = null;
+	}
 
 	@Test
 	void testGetUserName() {
@@ -28,34 +36,33 @@ class ProgramAndWelcomeTests {
 
 	@Test
 	void testGetUserActivity() {
-		Program.displayActivityMenu();
-		String input = Program.promptUserForActivity(scanner);
-		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes"));
+		program.displayActivityMenu();
+		String input = program.promptUserForActivity(scanner);
+		assertTrue(input.toLowerCase().equals("horoscope") || input.toLowerCase().equals("compatibility calculator") || input.toLowerCase().equals("quizzes") || input.toLowerCase().equals("information"));
 	}
 	
 	@Test
 	void testGetUserBirthMonth() {
-		int input = Program.promptUserForBirthMonth(scanner);
+		int input = program.promptUserForBirthMonth(scanner);
 		assertTrue(input > 0 && input < 13);
 	}
 	
 	@Test
 	void testGetUserBirthDay() {
-		int input = Program.promptUserForBirthDay(scanner);
+		int input = program.promptUserForBirthDay(scanner);
 		assertTrue(input > 0 && input < 32);
 	}
 	
+	// do we need tests for getters and setters?
 	@Test
 	void createUserHoroscope() {
-		Horoscope horoscope = null;
-		horoscope = Program.createUserHoroscope(horoscope, scanner);
-		assertNotEquals(horoscope, null);
+		program.setUserHoroscope(scanner);
+		assertNotEquals(program.getUserHoroscope(), null);
 	}
 	
 	@Test
 	void testCheckIfUserDoesGoBack() {
-		System.out.println("type 'back' to go back");
-		boolean userGoesBack = Program.checkIfUserGoesBack(scanner);
+		boolean userGoesBack = program.checkIfUserGoesBack(scanner);
 		assertEquals(userGoesBack, true);
 	}
 	
@@ -69,9 +76,8 @@ class ProgramAndWelcomeTests {
 	
 	@Test
 	void testGetQuizInput() {
-		System.out.println("pick a quiz");
-		System.out.println(quizNames);
-		String input = Program.promptUserForQuizName(scanner, quizNames);
+		program.displayQuizMenu(scanner);
+		String input = program.promptUserForQuizName(scanner, quizNames);
 		boolean isAQuizName = false;
 		if(quizNames.contains(input)) {
 			isAQuizName = true;
@@ -79,6 +85,31 @@ class ProgramAndWelcomeTests {
 		assertEquals(isAQuizName, true);
 	}
 	
+	@Test
+	void testCheckIfUserInformationDoesNotExist() {
+		boolean exists = program.checkIfUserInformationExists();
+		assertEquals(exists, false);
+	}
+	
+	@Test
+	void testCheckIfUserInformationDoesExist() {
+		program.setUserInformation();
+		boolean exists = program.checkIfUserInformationExists();
+		assertEquals(exists, true);
+	}
+	
+	@Test
+	void testCheckIfHoroscopeDoesNotExist() {
+		boolean exists = program.checkIfUserHoroscopeExists();
+		assertEquals(exists, false);
+	}
+	
+	@Test
+	void testCheckIfUserHoroscopeDoesExist() {
+		program.setUserHoroscope(scanner);
+		boolean exists = program.checkIfUserHoroscopeExists();
+		assertEquals(exists, true);
+	}
 
 }
 
