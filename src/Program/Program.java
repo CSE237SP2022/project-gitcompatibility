@@ -30,8 +30,27 @@ public class Program {
 			program.runProgramRepeatedly(scanner);
 		}
 	}
+	
+	public UserInformation getUserInformation() {
+		return this.newUser;
+	}
+	
+	public void setUserInformation() {
+		Horoscope horoscope = getUserHoroscope();
+		this.newUser = new UserInformation(horoscope);
+	}
 
-
+	public Horoscope getUserHoroscope() {
+		return this.userHoroscope;
+	}
+	
+	public void setUserHoroscope(Scanner scanner) {
+		System.out.println("Enter your birthday: ");
+		int month = promptUserForBirthMonth(scanner);
+		int day = promptUserForBirthDay(scanner); 
+		this.userHoroscope = new Horoscope(month, day);
+	}
+	
 	public void runProgramRepeatedly(Scanner scanner) {
 		String activity = "";
 		if(checkIfUserGoesBack(scanner)) {
@@ -40,7 +59,6 @@ public class Program {
 			checkUserActivity(activity, scanner);
 		}
 	}
-
 
 	public void displayActivityMenu() {
 		System.out.println("What do you want to do next?");
@@ -58,7 +76,7 @@ public class Program {
 	
 	public void checkUserActivity(String activity, Scanner scanner) {
 		if(activity.toLowerCase().equals("horoscope")) {
-			getUserHoroscope(scanner);
+			displayUserHoroscope(scanner);
 		}
 		else if (activity.toLowerCase().equals("compatibility calculator")) {
 			getCompatibility(scanner);
@@ -71,17 +89,14 @@ public class Program {
 		}
 	}
 
-
 	public void displayUserInformation() {
 		if(!checkIfUserInformationExists()) {
-			createUserInformation();
+			setUserInformation();
 		}
-		this.newUser.displayInformation();
+		UserInformation user = getUserInformation();
+		user.displayInformation();
 	}
 
-	public void createUserInformation() {
-		this.newUser = new UserInformation(this.userHoroscope);
-	}
 
 	public void displayQuizMenu(Scanner scanner) {
 		System.out.println("Which quiz would you like to take?");
@@ -117,18 +132,30 @@ public class Program {
 	
 	public void addQuizNameAndResult(String name, String result) {
 		if(!checkIfUserInformationExists()) {
-			createUserInformation();
+			setUserInformation();
 		}
-		for(int i = 0; i < this.newUser.quizzes.length; i++) {
-			if(this.newUser.quizzes[i].equals("unknown")) {
-				this.newUser.quizzes[i] = name;
-				this.newUser.quizResults[i] = result;
+		UserInformation user = getUserInformation();
+		for(int i = 0; i < user.quizzes.length; i++) {
+			if(user.quizzes[i].equals("unknown")) {
+				user.quizzes[i] = name;
+				user.quizResults[i] = result;
 			}
 		}
 	}
 	
 	public boolean checkIfUserInformationExists() {
-		if(this.newUser == null) {
+		UserInformation user = getUserInformation();
+		if(user != null) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
+	
+	public boolean checkIfUserHoroscopeExists() {
+		Horoscope horoscope = getUserHoroscope();
+		if(horoscope != null) {
 			return true;
 		}
 		else {
@@ -137,20 +164,23 @@ public class Program {
 	}
 
 	public void getCompatibility(Scanner scanner) {
-		if (this.userHoroscope == null) {
-			createUserHoroscope(scanner);
+		if (checkIfUserHoroscopeExists()) {
+			setUserHoroscope(scanner);
 		}
+		Horoscope horoscope = getUserHoroscope();
 		System.out.println("Enter the other person's birthday: ");
 		int month = promptUserForBirthMonth(scanner);
 		int day = promptUserForBirthDay(scanner);
-		this.userHoroscope.getCompatibility(month, day);
+		horoscope.getCompatibility(month, day);
 	}
 
 
-	public void getUserHoroscope(Scanner scanner) {
-		createUserHoroscope(scanner);
-		this.userHoroscope.printHoroscope();
+	public void displayUserHoroscope(Scanner scanner) {
+		setUserHoroscope(scanner);
+		Horoscope horoscope = getUserHoroscope();
+		horoscope.printHoroscope();
 	}
+
 	
 	public boolean checkIfUserGoesBack(Scanner scanner) {
 		String input = "";
@@ -161,13 +191,6 @@ public class Program {
 		}
 		userGoesBack = true;
 		return userGoesBack;
-	}
-	
-	public void createUserHoroscope(Scanner scanner) {
-		System.out.println("Enter your birthday: ");
-		int month = promptUserForBirthMonth(scanner);
-		int day = promptUserForBirthDay(scanner); 
-		this.userHoroscope = new Horoscope(month, day);
 	}
 	
 	public int promptUserForBirthMonth(Scanner scanner) {
