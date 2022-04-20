@@ -34,7 +34,7 @@ public class QuizInput {
 		this.idealWeatherResults = new String[] {"Your perfect day is a hot, sunny summer day!", "Your perfect day is a snowy winter day sledding down Art Hill!", "Your perfect day is a crisp fall day when the leaves are changing colors!"};
 		this.quizzes = new String[][] {studySpotQuiz, livingSpaceQuiz, idealWeatherQuiz}; 
 		this.results = new String[][] {studySpotQuizResults, livingSpaceQuizResults, idealWeatherResults};
-		this.result = "";
+		this.result = "unknown";
 		this.quit = 0; 
 	}
 
@@ -125,6 +125,10 @@ public class QuizInput {
 		result = "";
 		quit++; 
 		
+	}
+	
+	public String getResult() {
+		return result;
 	}
 }
 
