@@ -5,7 +5,6 @@ import Horoscope.Horoscope;
 
 public class UserInformation {
 	
-	public String nameOfUser; 
 	public int birthMonthOfUser; 
 	public int birthDayOfUser; 
 	public Horoscope horoscopeOfUser; 
@@ -13,19 +12,15 @@ public class UserInformation {
 	public String[] quizResults;
 
 	
-	public UserInformation() {
-		this.nameOfUser = "unknown";
+	public UserInformation(Horoscope userHoroscope) {
 		this.birthMonthOfUser = 0; 
 		this.birthDayOfUser = 0; 
-		this.horoscopeOfUser = null;
+		this.horoscopeOfUser = userHoroscope;
 		this.quizzes = new String[] {"unknown", "unknown", "unknown"};
 		this.quizResults = new String[] {"unknown", "unknown", "unknown"};
 	}
 
 	public void displayInformation() {
-		System.out.println("User: " + nameOfUser);
-		System.out.println("Birthday: " + birthMonthOfUser + " / " + birthDayOfUser);
-		System.out.print("Horoscope: ");
 		printUserHoroscope();
 		System.out.println("");
 		System.out.println("Quiz Results: ");
@@ -40,6 +35,8 @@ public class UserInformation {
 	
 	public void printUserHoroscope() {
 		if(horoscopeOfUser != null) {
+			System.out.println("Birthday: " + horoscopeOfUser.month + " / " + horoscopeOfUser.day);
+			System.out.print("Horoscope: ");
 			horoscopeOfUser.printHoroscope();
 		}
 	}
