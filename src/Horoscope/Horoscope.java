@@ -17,6 +17,8 @@ import java.util.Scanner;
 
 
 
+
+
 public class Horoscope {
 	public int day;
 	public int month;
@@ -33,14 +35,14 @@ public class Horoscope {
 	public Horoscope(int month, int day) {
 		this.month = month;
 		this.day = day;
-		sign = assignSign(month, day);
+		sign = assignSign2(month, day);
 		this.element = setElement();
 		File adjFile = new File("src/adjectives.txt");
 		this.adjectives = makeList(adjFile);
 		File planetList = new File("src/planets.txt");
 		this.planets = makeList(planetList);
 		dailyHoroscope = setDailyHoroscope();
-		
+
 		this.compatibleSigns.put("Aries" , new LinkedList<String>(Arrays.asList(new String[] { "Gemini", "Libra", "Aquarius", "Aries","Leo", "Sagittarius"})));
 		this.compatibleSigns.put("Leo" , new LinkedList<String>(Arrays.asList(new String[] { "Gemini", "Libra",  "Aries","Leo", "Sagittarius"})));
 		this.compatibleSigns.put("Saggittarius" , new LinkedList<String>(Arrays.asList(new String[] { "Gemini", "Libra", "Aquarius", "Aries","Leo", "Sagittarius"})));
@@ -68,65 +70,64 @@ public class Horoscope {
 		System.out.println(this.dailyHoroscope);	
 		printSignCharacteristics();
 	}
-	
-	private int setDayDeterminer(int month, int day) {
+
+	private Map<Integer, Integer> makeMonthCutOffDayMap() {
 		Map<Integer, Integer> monthCutOffday = new HashMap<Integer, Integer>();
-		monthCutOffday.put(1, null);
-		monthCutOffday.put(2, null);
-		monthCutOffday.put(3, null);
-		monthCutOffday.put(4, null);
-		monthCutOffday.put(5, null);
-		monthCutOffday.put(6, null);
-		monthCutOffday.put(7, null);
-		monthCutOffday.put(8, null);
-		monthCutOffday.put(9, null);
-		monthCutOffday.put(10, null);
-		monthCutOffday.put(11, null);
-		monthCutOffday.put(12, null);
-		return 0;
-//		switch(month) {
-//		case 3,5,6: //21
-//			if(day < 21) {
-//				return 1;
-//			}
-//			else {
-//				return 2;
-//			}
-//		case 4,1:  //20
-//			if(day < 20) {
-//				return 1;
-//			}
-//			else {
-//				return 2;
-//			}
-//			
-//		case 7,8,9,10:  //23
-//			if(day < 23) {
-//				return 1;
-//			}
-//			else {
-//				return 2;
-//			}
-//		
-//		case 11,12:	 //22
-//			if(day < 22) {
-//				return 1;
-//			}
-//			else {
-//				return 2;
-//			}
-//		case 2:
-//			if(day < 19) {
-//				return 1;
-//			}
-//			else {
-//				return 2;
-//			}
-//		}
-//		return 0;
+		monthCutOffday.put(1,  20);
+		monthCutOffday.put(2,  19);
+		monthCutOffday.put(3,  21);
+		monthCutOffday.put(4,  20);
+		monthCutOffday.put(5,  21);
+		monthCutOffday.put(6,  21);
+		monthCutOffday.put(7,  23);
+		monthCutOffday.put(8,  23);
+		monthCutOffday.put(9,  23);
+		monthCutOffday.put(10, 23);
+		monthCutOffday.put(11, 22);
+		monthCutOffday.put(12, 22);
+		return monthCutOffday;
+	}
+	private Map<Integer, String> makeMonthToSignMap(List<String> monthWithSignsList , int month){
+		Map<Integer, String> map = new HashMap<Integer, String>();
+		String s =Integer.toString(month);
+		int hi = monthWithSignsList.indexOf(s);
+		map.put(1, monthWithSignsList.get(hi + 1));
+		map.put(2, monthWithSignsList.get(hi + 2));
+		System.out.println("monthwith list at index " + month + hi + monthWithSignsList.get(hi + 1));
+		System.out.println(monthWithSignsList.get(hi + 2));
+		
+		return map;
+		
+	}
+
+
+	private String assignSign2(int month, int day) {
+		Map<Integer, Integer> monthCutOffday = makeMonthCutOffDayMap();
+		int cutOff = monthCutOffday.get(month);
+		int cutoffNumber = 0;
+		if(day<cutOff) {
+			cutoffNumber = 1;
+		}
+		if(day>=cutOff) {
+			cutoffNumber = 2;
+		}
+
+		File monthsWithSignsFile = new File("src/monthsWithSigns.txt");
+		List<String> monthsWithSignsList = new ArrayList<String>();
+		monthsWithSignsList = makeList(monthsWithSignsFile);
+
+		Map<Integer, String> monthToSignMap = makeMonthToSignMap(monthsWithSignsList, month);
+				// map = cutoff to sign
+		
+		String sign = monthToSignMap.get(cutoffNumber);
+		return sign;
 	}
 
 	private String assignSign(int month, int day){	
+		File monthsWithSignsFile = new File("src/monthsWithSigns.txt");
+		List<String> monthsWithSignsList = new ArrayList<String>();
+		monthsWithSignsList = makeList(monthsWithSignsFile);
+		Map<Integer, String> monthToSignMap = makeMonthToSignMap(monthsWithSignsList, month);
 		if(month == 3) {
 			if(day < 21) {
 				sign = "Pisces";
@@ -232,12 +233,12 @@ public class Horoscope {
 		return dailyHoroscope;
 
 	}  
-	
+
 	private List<String> makeList(File myFile) {
-		
-		
+
+
 		try {
-			
+
 			Scanner myReader = new Scanner(myFile);
 			String line = myReader.nextLine();
 
@@ -249,13 +250,13 @@ public class Horoscope {
 			return words;
 
 		} catch (IOException e) {
-			
+
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	public String getRandomWordFromList(List<String> wordList) {
 		Random rand = new Random();
 		String randomWord = (String) wordList.get(rand.nextInt(wordList.size()));
@@ -265,16 +266,16 @@ public class Horoscope {
 	public String getSign() {
 		return sign;
 	}
-	
-	
+
+
 	public List<String> getAdjectivesList() {
 		return this.adjectives;
 	}
-	
+
 	public String getDailyHoroscope() {
 		return this.dailyHoroscope;
 	}
-	
+
 	public String getElement() {
 		return this.element;
 	}
@@ -302,43 +303,43 @@ public class Horoscope {
 		System.out.println(getSign() + " and " + compare.getSign() + " are not compatible :-(");
 		return false;
 	}
-	
-	public void readSignCharacteristics() {
 
-			while(fileIn.hasNextLine()) {
-				String searchFile = fileIn.nextLine();
-				if (checkLineForWord(searchFile)) {
-					this.signCharacteristics.add(searchFile);
-					getNextLines();
-					break;
-				}
-			}			
-			
+	public void readSignCharacteristics() {
+		
+		while(fileIn.hasNextLine()) {
+			String searchFile = fileIn.nextLine();
+			if (checkLineForWord(searchFile)) {
+				this.signCharacteristics.add(searchFile);
+				getNextLines();
+				break;
+			}
+		}			
+
 	}
-	
+
 	public LinkedList<String> getSignCharacteristics() {
 		return this.signCharacteristics;
 	}
-	
+
 	public void printSignCharacteristics() {
 		for(String line:signCharacteristics){
 			System.out.println(line);
 		}
 	}
-	
+
 	public boolean checkLineForWord(String searchFile) {
-		
-			if (searchFile.equals(this.getSign())) {
-				return true;
-			}
-			return false;
+
+		if (searchFile.equals(this.getSign())) {
+			return true;
+		}
+		return false;
 	}
-	
+
 	public void getNextLines() {
 		for(int i=0; i<4; ++i) {
 			String line = fileIn.nextLine();
 			this.signCharacteristics.add(line);
-			
+
 		}
 	}
 
