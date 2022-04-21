@@ -69,22 +69,23 @@ public class Program {
 	}
 	
 	public void checkIfUserQuits(String input) {
-		if(input.equals("quit")) {
+		if(checkIfStringInputEquals(input, "quit")) {
 			System.exit(0);
 		}
 	}
 	
 	public void checkUserActivity(String activity, Scanner scanner) {
-		if(activity.toLowerCase().equals("horoscope")) {
+		String input = activity.toLowerCase();
+		if(checkIfStringInputEquals(input, "horoscope")) {
 			displayUserHoroscope(scanner);
 		}
-		else if (activity.toLowerCase().equals("compatibility calculator")) {
+		else if (checkIfStringInputEquals(input, "compatibility calculator")) {
 			getCompatibility(scanner);
 		}
-		else if (activity.toLowerCase().equals("quizzes")) {
+		else if (checkIfStringInputEquals(input, "quizzes")) {
 			displayQuizMenu(scanner);
 		}
-		else if(activity.toLowerCase().equals("information")) {
+		else if(checkIfStringInputEquals(input, "information")) {
 			displayUserInformation();
 		}
 	}
@@ -123,11 +124,19 @@ public class Program {
 	
 	public String promptUserForQuizName(Scanner scanner, List<String> quizNames) {
 		String input = "";
-		while (!quizNames.contains(input.toLowerCase())) {
+		while (!checkIfValidQuizName(input, quizNames)) {
 			input = scanner.nextLine();
 		}
 		
 		return input;
+	}
+	
+	public boolean checkIfValidQuizName(String input, List<String> quizNames) {
+		if (quizNames.contains(input.toLowerCase())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 	
 	public void addQuizNameAndResult(String name, String result) {
@@ -185,7 +194,7 @@ public class Program {
 	public boolean checkIfUserGoesBack(Scanner scanner) {
 		String input = "";
 		boolean userGoesBack = false;
-		while(!input.toLowerCase().equals("back")) {
+		while(!checkIfStringInputEquals(input, "back")) {
 			userGoesBack = false;
 			input = scanner.nextLine();
 		}
@@ -196,7 +205,7 @@ public class Program {
 	public int promptUserForBirthMonth(Scanner scanner) {
 		System.out.println("Birth month? (1-12)");
 		int month = 0;
-		while(month < 1 || month > 12) {
+		while(!checkIfValidMonth(month)) {
 			month = scanner.nextInt();
 		}
 		return month;
@@ -205,20 +214,52 @@ public class Program {
 	public int promptUserForBirthDay(Scanner scanner) {
 		System.out.println("Birth day? (1-31)");
 		int day = 0;
-		while(day < 1 || day > 31 ) {
+		while(!checkIfValidDay(day)) {
 			day = scanner.nextInt();
 		}
 		return day;
 	}
+	
+	public boolean checkIfValidDay(int day) {
+		if(day < 1 || day > 31 ) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public boolean checkIfValidMonth(int month) {
+		if(month < 1 || month > 12) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 	public String promptUserForActivity(Scanner scanner) {
 		String input = "";
-		while (!input.toLowerCase().equals("horoscope") && !input.toLowerCase().equals("compatibility calculator")
-				&& !input.toLowerCase().equals("quizzes") && !input.toLowerCase().equals("information")){
+		while (!checkIfValidActivity(input)){
 			checkIfUserQuits(input.toLowerCase());
 			input = scanner.nextLine();
 		}
 		return input;
+	}
+	
+	public boolean checkIfValidActivity(String input) {
+		if (!checkIfStringInputEquals(input, "horoscope") && !checkIfStringInputEquals(input, "compatibility calculator")
+				&& !checkIfStringInputEquals(input, "quizzes") && !checkIfStringInputEquals(input, "information")) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public boolean checkIfStringInputEquals(String actualInput, String expectedInput) {
+		if(actualInput.equals(expectedInput)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
