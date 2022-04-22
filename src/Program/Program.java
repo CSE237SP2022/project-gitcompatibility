@@ -110,6 +110,9 @@ public class Program {
 		String quizName = promptUserForQuizName(scanner, quizNames);
 		newQuiz.runQuiz(quizName);
 		addQuizNameAndResult(quizName, newQuiz.result);
+		
+		promptToReturnToMain();
+		promptToReturnToQuizMenu();
 		if(checkForExpectedInput(scanner, "new quiz")) {
 			displayQuizMenu(scanner);
 		}
@@ -184,6 +187,12 @@ public class Program {
 		int month = promptUserForBirthMonth(scanner);
 		int day = promptUserForBirthDay(scanner);
 		horoscope.getCompatibility(month, day);
+		
+		promptToReturnToMain();
+		promptToRecalculateCompatibility();
+		if(checkForExpectedInput(scanner, "recalculate")) {
+			getCompatibility(scanner);
+		}
 	}
 
 
@@ -263,5 +272,17 @@ public class Program {
 			return false;
 		}
 	}
+	
+	private void promptToReturnToMain(){
+        System.out.println("Enter 'back' to go back to the activity menu.");
+    }
+
+    private void promptToRecalculateCompatibility(){
+        System.out.println("Enter 'recaclulate' to recalculate your compatibility.");
+    }
+
+    private void promptToReturnToQuizMenu(){
+        System.out.println("Enter 'new quiz' to return to the quiz menu.");
+    }
 
 }
