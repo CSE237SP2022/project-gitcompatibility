@@ -15,14 +15,20 @@ public class WelcomeInterface {
 	public static String promptUserForName(Scanner scanner) {
 		System.out.println("Hi! What's your name?");
 		String input = "";
-		while (input == "") {
+		while (checkIfInputIsEmpty(input)) {
 			input = scanner.nextLine();
 		}
-		UserInformation newUser = new UserInformation();
-		newUser.nameOfUser = input;
 		return input;
 	}
-
+	
+	public static boolean checkIfInputIsEmpty(String input) {
+		if (input.equals("")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public static void displayWelcomeInterface(String name) {
 		System.out.println("Welcome, " + name + "!");
 		System.out.println("Choose an activity to complete. After you're done, enter 'back' to go back to the activity menu.");
