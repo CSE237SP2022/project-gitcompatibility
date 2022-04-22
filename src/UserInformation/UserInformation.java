@@ -22,7 +22,7 @@ public class UserInformation {
 
 	public void displayInformation() {
 		printUserHoroscope();
-		System.out.println("");
+		System.out.println(""); //this is simply for formatting
 		System.out.println("Quiz Results: ");
 		printQuizResults();
 	}
