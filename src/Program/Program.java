@@ -53,7 +53,7 @@ public class Program {
 	
 	public void runProgramRepeatedly(Scanner scanner) {
 		String activity = "";
-		if(checkIfUserGoesBack(scanner)) {
+		if(checkForExpectedInput(scanner, "back")) {
 			displayActivityMenu();
 			activity = promptUserForActivity(scanner);
 			checkUserActivity(activity, scanner);
@@ -110,6 +110,9 @@ public class Program {
 		String quizName = promptUserForQuizName(scanner, quizNames);
 		newQuiz.runQuiz(quizName);
 		addQuizNameAndResult(quizName, newQuiz.result);
+		if(checkForExpectedInput(scanner, "new quiz")) {
+			displayQuizMenu(scanner);
+		}
 	}
 		
 		
@@ -189,17 +192,16 @@ public class Program {
 		Horoscope horoscope = getUserHoroscope();
 		horoscope.printHoroscope();
 	}
-
 	
-	public boolean checkIfUserGoesBack(Scanner scanner) {
+	public boolean checkForExpectedInput(Scanner scanner, String expectedInput) {
 		String input = "";
-		boolean userGoesBack = false;
-		while(!checkIfStringInputEquals(input, "back")) {
-			userGoesBack = false;
+		boolean gotExpectedInput = false;
+		while(!checkIfStringInputEquals(input, expectedInput)) {
+			gotExpectedInput = false;
 			input = scanner.nextLine();
 		}
-		userGoesBack = true;
-		return userGoesBack;
+		gotExpectedInput = true;
+		return gotExpectedInput;
 	}
 	
 	public int promptUserForBirthMonth(Scanner scanner) {
