@@ -179,7 +179,7 @@ public class Program {
 	}
 
 	public void getCompatibility(Scanner scanner) {
-		if (checkIfUserHoroscopeExists()) {
+		if (!checkIfUserHoroscopeExists()) {
 			setUserHoroscope(scanner);
 		}
 		Horoscope horoscope = getUserHoroscope();
@@ -278,7 +278,7 @@ public class Program {
     }
 
     private void promptToRecalculateCompatibility(){
-        System.out.println("Enter 'recaclulate' to recalculate your compatibility.");
+        System.out.println("Enter 'recalculate' to recalculate your compatibility.");
     }
 
     private void promptToReturnToQuizMenu(){
