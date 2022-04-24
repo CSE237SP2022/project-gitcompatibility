@@ -266,7 +266,7 @@ public class Program {
 	}
 	
 	public boolean checkIfStringInputEquals(String actualInput, String expectedInput) {
-		if(actualInput.equals(expectedInput)) {
+		if(actualInput.toLowerCase().equals(expectedInput)) {
 			return true;
 		} else {
 			return false;
