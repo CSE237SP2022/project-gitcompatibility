@@ -87,14 +87,13 @@ public class Horoscope {
 		monthCutOffday.put(12, 22);
 		return monthCutOffday;
 	}
+	
 	private Map<Integer, String> makeMonthToSignMap(List<String> monthWithSignsList , int month){
 		Map<Integer, String> map = new HashMap<Integer, String>();
 		String s =Integer.toString(month);
 		int hi = monthWithSignsList.indexOf(s);
 		map.put(1, monthWithSignsList.get(hi + 1));
 		map.put(2, monthWithSignsList.get(hi + 2));
-		System.out.println("monthwith list at index " + month + hi + monthWithSignsList.get(hi + 1));
-		System.out.println(monthWithSignsList.get(hi + 2));
 		
 		return map;
 		
@@ -131,8 +130,6 @@ public class Horoscope {
 	}  
 
 	private List<String> makeList(File myFile) {
-
-
 		try {
 
 			Scanner myReader = new Scanner(myFile);
