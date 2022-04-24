@@ -91,9 +91,9 @@ public class Horoscope {
 	private Map<Integer, String> makeMonthToSignMap(List<String> monthWithSignsList , int month){
 		Map<Integer, String> map = new HashMap<Integer, String>();
 		String s =Integer.toString(month);
-		int hi = monthWithSignsList.indexOf(s);
-		map.put(1, monthWithSignsList.get(hi + 1));
-		map.put(2, monthWithSignsList.get(hi + 2));
+		int indexOfMonth = monthWithSignsList.indexOf(s);
+		map.put(1, monthWithSignsList.get(indexOfMonth  + 1));
+		map.put(2, monthWithSignsList.get(indexOfMonth  + 2));
 		
 		return map;
 		
