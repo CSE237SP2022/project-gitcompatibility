@@ -116,7 +116,6 @@ public class Horoscope {
 		monthsWithSignsList = makeList(monthsWithSignsFile);
 
 		Map<Integer, String> monthToSignMap = makeMonthToSignMap(monthsWithSignsList, month);
-				// map = cutoff to sign
 		
 		String sign = monthToSignMap.get(cutoffNumber);
 		return sign;
