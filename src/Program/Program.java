@@ -10,31 +10,30 @@ import Quiz.QuizInput;
 import UserInformation.UserInformation;
 
 public class Program {
-	
-	public Horoscope userHoroscope; 
+
+	public Horoscope userHoroscope;
 	public UserInformation newUser;
 
-	
 	public Program() {
 		this.userHoroscope = null;
 		this.newUser = null;
 	}
-	
+
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		Program program = new Program();
 		WelcomeInterface.main(args);
 		String activity = program.promptUserForActivity(scanner);
 		program.checkUserActivity(activity, scanner);
-		while(true) {
+		while (true) {
 			program.runProgramRepeatedly(scanner);
 		}
 	}
-	
+
 	public UserInformation getUserInformation() {
 		return this.newUser;
 	}
-	
+
 	public void setUserInformation() {
 		Horoscope horoscope = getUserHoroscope();
 		this.newUser = new UserInformation(horoscope);
@@ -43,21 +42,19 @@ public class Program {
 	public Horoscope getUserHoroscope() {
 		return this.userHoroscope;
 	}
-	
+
 	public void setUserHoroscope(Scanner scanner) {
 		System.out.println("Enter your birthday: ");
 		int month = promptUserForBirthMonth(scanner);
-		int day = promptUserForBirthDay(scanner); 
+		int day = promptUserForBirthDay(scanner);
 		this.userHoroscope = new Horoscope(month, day);
 	}
-	
+
 	public void runProgramRepeatedly(Scanner scanner) {
 		String activity = "";
-		if(checkForExpectedInput(scanner, "back")) {
-			displayActivityMenu();
-			activity = promptUserForActivity(scanner);
-			checkUserActivity(activity, scanner);
-		}
+		displayActivityMenu();
+		activity = promptUserForActivity(scanner);
+		checkUserActivity(activity, scanner);
 	}
 
 	public void displayActivityMenu() {
@@ -67,37 +64,35 @@ public class Program {
 		System.out.println("Quizzes");
 		System.out.println("Information");
 	}
-	
+
 	public void checkIfUserQuits(String input) {
-		if(checkIfStringInputEquals(input, "quit")) {
+		if (checkIfStringInputEquals(input, "quit")) {
 			System.exit(0);
 		}
 	}
-	
+
 	public void checkUserActivity(String activity, Scanner scanner) {
 		String input = activity.toLowerCase();
-		if(checkIfStringInputEquals(input, "horoscope")) {
+		if (checkIfStringInputEquals(input, "horoscope")) {
 			displayUserHoroscope(scanner);
-		}
-		else if (checkIfStringInputEquals(input, "compatibility calculator")) {
+		} else if (checkIfStringInputEquals(input, "compatibility calculator")) {
 			getCompatibility(scanner);
-		}
-		else if (checkIfStringInputEquals(input, "quizzes")) {
+		} else if (checkIfStringInputEquals(input, "quizzes")) {
 			displayQuizMenu(scanner);
-		}
-		else if(checkIfStringInputEquals(input, "information")) {
-			displayUserInformation();
+		} else if (checkIfStringInputEquals(input, "information")) {
+			displayUserInformation(scanner);
 		}
 	}
 
-	public void displayUserInformation() {
-		if(!checkIfUserInformationExists()) {
+	public void displayUserInformation(Scanner scanner) {
+		if (!checkIfUserInformationExists()) {
 			setUserInformation();
 		}
 		UserInformation user = getUserInformation();
 		user.displayInformation();
+		promptToReturnToMain();
+		goBackToActivityMenu(scanner);
 	}
-
 
 	public void displayQuizMenu(Scanner scanner) {
 		System.out.println("Which quiz would you like to take?");
@@ -110,33 +105,27 @@ public class Program {
 		String quizName = promptUserForQuizName(scanner, quizNames);
 		newQuiz.runQuiz(quizName);
 		addQuizNameAndResult(quizName, newQuiz.result);
-		
 		promptToReturnToMain();
-		promptToReturnToQuizMenu();
-		if(checkForExpectedInput(scanner, "new quiz")) {
-			displayQuizMenu(scanner);
-		}
+		promptToReturnToQuizMenu(scanner);
 	}
-		
-		
+
 	public static List<String> getQuizNames(String[][] quizzes) {
 		List<String> quizNames = new LinkedList<String>();
-		for(int i = 0; i < quizzes.length; ++i) {
+		for (int i = 0; i < quizzes.length; ++i) {
 			quizNames.add(quizzes[i][0]);
 		}
 		return quizNames;
 	}
 
-	
 	public String promptUserForQuizName(Scanner scanner, List<String> quizNames) {
 		String input = "";
 		while (!checkIfValidQuizName(input, quizNames)) {
 			input = scanner.nextLine();
 		}
-		
+
 		return input;
 	}
-	
+
 	public boolean checkIfValidQuizName(String input, List<String> quizNames) {
 		if (quizNames.contains(input.toLowerCase())) {
 			return true;
@@ -144,36 +133,34 @@ public class Program {
 			return false;
 		}
 	}
-	
+
 	public void addQuizNameAndResult(String name, String result) {
-		if(!checkIfUserInformationExists()) {
+		if (!checkIfUserInformationExists()) {
 			setUserInformation();
 		}
 		UserInformation user = getUserInformation();
-		for(int i = 0; i < user.quizzes.length; i++) {
-			if(user.quizzes[i].equals("unknown")) {
+		for (int i = 0; i < user.quizzes.length; i++) {
+			if (user.quizzes[i].equals("unknown")) {
 				user.quizzes[i] = name;
 				user.quizResults[i] = result;
 			}
 		}
 	}
-	
+
 	public boolean checkIfUserInformationExists() {
 		UserInformation user = getUserInformation();
-		if(user != null) {
+		if (user != null) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
-	
+
 	public boolean checkIfUserHoroscopeExists() {
 		Horoscope horoscope = getUserHoroscope();
-		if(horoscope != null) {
+		if (horoscope != null) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -187,25 +174,22 @@ public class Program {
 		int month = promptUserForBirthMonth(scanner);
 		int day = promptUserForBirthDay(scanner);
 		horoscope.getCompatibility(month, day);
-		
 		promptToReturnToMain();
-		promptToRecalculateCompatibility();
-		if(checkForExpectedInput(scanner, "recalculate")) {
-			getCompatibility(scanner);
-		}
+		promptToRecalculateCompatibility(scanner);
 	}
-
 
 	public void displayUserHoroscope(Scanner scanner) {
 		setUserHoroscope(scanner);
 		Horoscope horoscope = getUserHoroscope();
 		horoscope.printHoroscope();
+		promptToReturnToMain();
+		goBackToActivityMenu(scanner);
 	}
-	
+
 	public boolean checkForExpectedInput(Scanner scanner, String expectedInput) {
 		String input = "";
 		boolean gotExpectedInput = false;
-		while(!checkIfStringInputEquals(input, expectedInput)) {
+		while (!checkIfStringInputEquals(input, expectedInput)) {
 			gotExpectedInput = false;
 			input = scanner.nextLine();
 		}
@@ -213,34 +197,42 @@ public class Program {
 		return gotExpectedInput;
 	}
 	
+	public String getFirstValidInputFound(Scanner scanner, String expectedInput1, String expectedInput2) {
+		String input = "";
+		while (!checkIfStringInputEquals(input, expectedInput1) && !checkIfStringInputEquals(input, expectedInput2)) {
+			input = scanner.nextLine();
+		}
+		return input;
+	}
+
 	public int promptUserForBirthMonth(Scanner scanner) {
 		System.out.println("Birth month? (1-12)");
 		int month = 0;
-		while(!checkIfValidMonth(month)) {
+		while (!checkIfValidMonth(month)) {
 			month = scanner.nextInt();
 		}
 		return month;
 	}
-	
+
 	public int promptUserForBirthDay(Scanner scanner) {
 		System.out.println("Birth day? (1-31)");
 		int day = 0;
-		while(!checkIfValidDay(day)) {
+		while (!checkIfValidDay(day)) {
 			day = scanner.nextInt();
 		}
 		return day;
 	}
-	
+
 	public boolean checkIfValidDay(int day) {
-		if(day < 1 || day > 31 ) {
+		if (day < 1 || day > 31) {
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
+
 	public boolean checkIfValidMonth(int month) {
-		if(month < 1 || month > 12) {
+		if (month < 1 || month > 12) {
 			return false;
 		} else {
 			return true;
@@ -249,40 +241,67 @@ public class Program {
 
 	public String promptUserForActivity(Scanner scanner) {
 		String input = "";
-		while (!checkIfValidActivity(input)){
+		while (!checkIfValidActivity(input)) {
 			checkIfUserQuits(input.toLowerCase());
 			input = scanner.nextLine();
 		}
 		return input;
 	}
-	
+
 	public boolean checkIfValidActivity(String input) {
-		if (!checkIfStringInputEquals(input, "horoscope") && !checkIfStringInputEquals(input, "compatibility calculator")
+		if (!checkIfStringInputEquals(input, "horoscope")
+				&& !checkIfStringInputEquals(input, "compatibility calculator")
 				&& !checkIfStringInputEquals(input, "quizzes") && !checkIfStringInputEquals(input, "information")) {
 			return false;
 		} else {
 			return true;
 		}
 	}
-	
+
 	public boolean checkIfStringInputEquals(String actualInput, String expectedInput) {
-		if(actualInput.toLowerCase().equals(expectedInput)) {
+		if (actualInput.toLowerCase().equals(expectedInput)) {
 			return true;
 		} else {
 			return false;
 		}
 	}
 	
-	private void promptToReturnToMain(){
-        System.out.println("Enter 'back' to go back to the activity menu.");
-    }
+	public void rerunQuizOrGoBack(Scanner scanner) {
+		String input = getFirstValidInputFound(scanner, "new quiz", "back");
+		if(checkIfStringInputEquals(input, "new quiz")) {
+			displayQuizMenu(scanner);
+		} else if (checkIfStringInputEquals(input, "back")) {
+			runProgramRepeatedly(scanner);
+		}
+	}
+	
+	public void rerunCompatibilityOrGoBack(Scanner scanner) {
+		String input = getFirstValidInputFound(scanner, "recalculate", "back");
+		if(checkIfStringInputEquals(input, "recalculate")) {
+			getCompatibility(scanner);
+		} else if (checkIfStringInputEquals(input, "back")) {
+			runProgramRepeatedly(scanner);
+		}
+	}
+	
+	public void goBackToActivityMenu(Scanner scanner) {
+		if(checkForExpectedInput(scanner, "back")) {
+			runProgramRepeatedly(scanner);
+		}
+	}
 
-    private void promptToRecalculateCompatibility(){
-        System.out.println("Enter 'recalculate' to recalculate your compatibility.");
-    }
+	private void promptToReturnToMain() {
+		System.out.println("Enter 'back' to go back to the activity menu.");
+	}
 
-    private void promptToReturnToQuizMenu(){
-        System.out.println("Enter 'new quiz' to return to the quiz menu.");
-    }
+	private void promptToRecalculateCompatibility(Scanner scanner) {
+		System.out.println("Enter 'recalculate' to recalculate your compatibility.");
+		rerunCompatibilityOrGoBack(scanner);
+	}
+
+	private void promptToReturnToQuizMenu(Scanner scanner) {
+		System.out.println("Enter 'new quiz' to return to the quiz menu.");
+		rerunQuizOrGoBack(scanner);
+	}
 
 }
