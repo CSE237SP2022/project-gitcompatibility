@@ -34,7 +34,7 @@ public class QuizInput {
 		this.idealWeatherResults = new String[] {"Your perfect day is a hot, sunny summer day!", "Your perfect day is a snowy winter day sledding down Art Hill!", "Your perfect day is a crisp fall day when the leaves are changing colors!"};
 		this.quizzes = new String[][] {studySpotQuiz, livingSpaceQuiz, idealWeatherQuiz}; 
 		this.results = new String[][] {studySpotQuizResults, livingSpaceQuizResults, idealWeatherResults};
-		this.result = "";
+		this.result = "unknown";
 		this.quit = 0; 
 	}
 
@@ -79,7 +79,7 @@ public class QuizInput {
 	}
 
 	private void quizIntroduction() {
-		System.out.println("What is your ideal study spot on campus?");
+		System.out.println("Welcome to our Quiz!");
 		System.out.println("To take this quiz, answer 'yes' or 'no' after each question. If you would like to end this quiz at any time, "
 				+ "enter 'quit'");
 	}
@@ -125,6 +125,10 @@ public class QuizInput {
 		result = "";
 		quit++; 
 		
+	}
+	
+	public String getResult() {
+		return result;
 	}
 }
 
