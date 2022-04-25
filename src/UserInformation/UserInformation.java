@@ -1,5 +1,8 @@
 package UserInformation;
 
+import java.util.List;
+import java.util.Map;
+
 import Horoscope.Horoscope;
 
 
@@ -8,28 +11,30 @@ public class UserInformation {
 	public int birthMonthOfUser; 
 	public int birthDayOfUser; 
 	public Horoscope horoscopeOfUser; 
-	public String[] quizzes;
-	public String[] quizResults;
 
 	
 	public UserInformation(Horoscope userHoroscope) {
 		this.birthMonthOfUser = 0; 
 		this.birthDayOfUser = 0; 
 		this.horoscopeOfUser = userHoroscope;
-		this.quizzes = new String[] {"unknown", "unknown", "unknown"};
-		this.quizResults = new String[] {"unknown", "unknown", "unknown"};
 	}
 
-	public void displayInformation() {
+	public void displayInformation(Map<String, String> savedQuizResults, List<String> quizNames) {
 		printUserHoroscope();
 		System.out.println(""); //this is simply for formatting
 		System.out.println("Quiz Results: ");
-		printQuizResults();
+		printQuizResults(savedQuizResults, quizNames);
 	}
 	
-	public void printQuizResults() {
-		for(int i = 0; i < quizzes.length; i++) {
-			System.out.println(quizzes[i] + ": " + quizResults[i]);
+	public void printQuizResults(Map<String, String> savedQuizResults, List<String> quizNames) {
+		for(String quizName1:quizNames){
+			if(savedQuizResults.containsKey(quizName1)){
+				System.out.println(quizName1 + ": " + savedQuizResults.get(quizName1));
+			}
+			else{
+				System.out.println(quizName1 + ": " + "unknown");
+			}
+			
 		}
 	}
 	
