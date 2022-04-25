@@ -46,7 +46,25 @@ private File testFile;
 	@Test
 	void testGetSign() {
 		String sign = horoscopeTest.getSign(); //test a method
+		Horoscope horoscopeTest1 = new Horoscope(1, 17);
+		String sign1 = horoscopeTest1.getSign();
+		Horoscope horoscopeTest2 = new Horoscope(2, 17);
+		String sign2 = horoscopeTest2.getSign();
+		Horoscope horoscopeTest3 = new Horoscope(3, 17);
+		String sign3 = horoscopeTest3.getSign();
+		Horoscope horoscopeTest4 = new Horoscope(4, 17);
+		String sign4 = horoscopeTest4.getSign();
+		Horoscope horoscopeTest5 = new Horoscope(5, 17);
+		String sign5 = horoscopeTest5.getSign();
+	
+		
+		
 		assertTrue("Aries".equals(sign));
+		assertTrue("Aquarius".equals(sign2));
+		assertTrue("Pisces".equals(sign3));
+		assertTrue("Aries".equals(sign4));
+		assertTrue("Taurus".equals(sign5));
+
 		
 	}
 	
