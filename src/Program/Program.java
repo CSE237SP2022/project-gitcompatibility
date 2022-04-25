@@ -106,14 +106,18 @@ public class Program {
 		QuizInput newQuiz = new QuizInput();
 		String[][] quizzes = newQuiz.quizzes;
 		List<String> quizNames = getQuizNames(quizzes);
-		for (int i = 0; i < quizNames.size(); ++i) {
-			System.out.println(quizNames.get(i));
-		}
+		printQuizNames(quizNames);
 		String quizName = promptUserForQuizName(scanner, quizNames);
 		newQuiz.runQuiz(quizName);
 		savedQuizResults.put(quizName, newQuiz.getResult());
 		promptToReturnToMain();
 		promptToReturnToQuizMenu(scanner);
+	}
+
+	private void printQuizNames(List<String> quizNames) {
+		for (int i = 0; i < quizNames.size(); ++i) {
+			System.out.println(quizNames.get(i));
+		}
 	}
 	
 	public Map<String, String> getSavedQuizResults(){
