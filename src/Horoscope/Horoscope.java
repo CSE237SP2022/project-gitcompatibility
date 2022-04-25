@@ -66,9 +66,8 @@ public class Horoscope {
 	}
 
 	public void printHoroscope() {
-		System.out.println(sign);
-		System.out.println(this.dailyHoroscope);	
 		printSignCharacteristics();
+		System.out.println("Your Horoscope for the day: " + this.dailyHoroscope + ".");	
 	}
 
 	private Map<Integer, Integer> makeMonthCutOffDayMap() {
