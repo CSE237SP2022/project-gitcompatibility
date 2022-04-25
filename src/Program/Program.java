@@ -1,7 +1,10 @@
 package Program;
 
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 import Welcome.WelcomeInterface;
@@ -13,10 +16,14 @@ public class Program {
 
 	public Horoscope userHoroscope;
 	public UserInformation newUser;
+	public Map<String, String> savedQuizResults;
+	private LinkedList <String> quizNames;
 
 	public Program() {
 		this.userHoroscope = null;
 		this.newUser = null;
+		savedQuizResults = new HashMap<String, String>();
+		this.quizNames = new LinkedList<String>(Arrays.asList(new String[] {"study spot quiz", "living space quiz", "ideal weather quiz"}));
 	}
 
 	public static void main(String[] args) {
@@ -89,7 +96,7 @@ public class Program {
 			setUserInformation();
 		}
 		UserInformation user = getUserInformation();
-		user.displayInformation();
+		user.displayInformation(getSavedQuizResults(), this.quizNames);
 		promptToReturnToMain();
 		goBackToActivityMenu(scanner);
 	}
@@ -104,10 +111,15 @@ public class Program {
 		}
 		String quizName = promptUserForQuizName(scanner, quizNames);
 		newQuiz.runQuiz(quizName);
-		addQuizNameAndResult(quizName, newQuiz.result);
+		savedQuizResults.put(quizName, newQuiz.getResult());
 		promptToReturnToMain();
 		promptToReturnToQuizMenu(scanner);
 	}
+	
+	public Map<String, String> getSavedQuizResults(){
+			
+			return this.savedQuizResults;
+		}
 
 	public static List<String> getQuizNames(String[][] quizzes) {
 		List<String> quizNames = new LinkedList<String>();
@@ -134,18 +146,6 @@ public class Program {
 		}
 	}
 
-	public void addQuizNameAndResult(String name, String result) {
-		if (!checkIfUserInformationExists()) {
-			setUserInformation();
-		}
-		UserInformation user = getUserInformation();
-		for (int i = 0; i < user.quizzes.length; i++) {
-			if (user.quizzes[i].equals("unknown")) {
-				user.quizzes[i] = name;
-				user.quizResults[i] = result;
-			}
-		}
-	}
 
 	public boolean checkIfUserInformationExists() {
 		UserInformation user = getUserInformation();
