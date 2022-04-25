@@ -17,7 +17,7 @@ public class UserInformation {
 		this.birthDayOfUser = 0; 
 		this.horoscopeOfUser = userHoroscope;
 		this.quizzes = new String[] {"unknown", "unknown", "unknown"};
-		this.quizResults = new String[] {"unknown", "unknown", "unknown"};
+		this.quizResults = new String[] {"Take the quiz to find out!", "Take the quiz to find out!", "Take the quiz to find out!"};
 	}
 
 	public void displayInformation() {
