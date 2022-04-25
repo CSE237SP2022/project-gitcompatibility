@@ -79,7 +79,7 @@ public class QuizInput {
 	}
 
 	private void quizIntroduction() {
-		System.out.println("What is your ideal study spot on campus?");
+		System.out.println("Welcome to our Quiz!");
 		System.out.println("To take this quiz, answer 'yes' or 'no' after each question. If you would like to end this quiz at any time, "
 				+ "enter 'quit'");
 	}
