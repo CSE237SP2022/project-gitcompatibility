@@ -1,5 +1,6 @@
 # Git Compatibility
 
+# Use the following command to run our program:
 <pre><code>./runProgram.sh</code></pre>
 
 # Iteration 1
