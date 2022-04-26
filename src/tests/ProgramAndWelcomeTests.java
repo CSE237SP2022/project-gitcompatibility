@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import Horoscope.Horoscope;
 import Program.Program;
 import Quiz.QuizInput;
+import UserInformation.UserInformation;
 import Welcome.WelcomeInterface;
 
 class ProgramAndWelcomeTests {
@@ -119,6 +120,25 @@ class ProgramAndWelcomeTests {
 		assertFalse(isValid);
 	}
 	
+	@Test
+	void testCheckIfUserInformationExists() {
+		program.setUserInformation();
+		boolean exists = program.checkIfUserInformationExists();
+		assertTrue(exists);
+	}
+	
+	@Test
+	void testCheckIfUserInformationDoesNotExist() {
+		boolean exists = program.checkIfUserInformationExists();
+		assertFalse(exists);
+	}
+	
+	
+	@Test
+	void testCheckIfHoroscopeDoesNotExist() {
+		boolean exists = program.checkIfUserHoroscopeExists();
+		assertFalse(exists);
+	}
 
 }
 
