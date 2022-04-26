@@ -92,9 +92,7 @@ public class Program {
 	}
 
 	public void displayUserInformation(Scanner scanner) {
-		if (!checkIfUserInformationExists()) {
-			setUserInformation();
-		}
+		setUserInformation();
 		UserInformation user = getUserInformation();
 		user.displayInformation(getSavedQuizResults(), this.quizNames);
 		promptToReturnToMain();
@@ -144,16 +142,6 @@ public class Program {
 
 	public boolean checkIfValidQuizName(String input, List<String> quizNames) {
 		if (quizNames.contains(input.toLowerCase())) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-
-	public boolean checkIfUserInformationExists() {
-		UserInformation user = getUserInformation();
-		if (user != null) {
 			return true;
 		} else {
 			return false;
