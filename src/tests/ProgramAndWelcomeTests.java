@@ -43,14 +43,14 @@ class ProgramAndWelcomeTests {
 	}
 	
 	@Test
-	void testCheckForValidActivity() {
+	void testCheckIfValidActivity() {
 		String input = "quizzes";
 		boolean isValid = program.checkIfValidActivity(input);
 		assertTrue(isValid);
 	}
 
 	@Test
-	void testCheckForInvalidActivity() {
+	void testCheckIfInvalidActivity() {
 		String input = "";
 		boolean isValid = program.checkIfValidActivity(input);
 		assertFalse(isValid);
@@ -118,19 +118,6 @@ class ProgramAndWelcomeTests {
 		String input = "food quiz";
 		boolean isValid = program.checkIfValidQuizName(input, quizNames);
 		assertFalse(isValid);
-	}
-	
-	@Test
-	void testCheckIfUserInformationExists() {
-		program.setUserInformation();
-		boolean exists = program.checkIfUserInformationExists();
-		assertTrue(exists);
-	}
-	
-	@Test
-	void testCheckIfUserInformationDoesNotExist() {
-		boolean exists = program.checkIfUserInformationExists();
-		assertFalse(exists);
 	}
 	
 	
