@@ -119,7 +119,6 @@ public class Program {
 	}
 	
 	public Map<String, String> getSavedQuizResults(){
-			
 			return this.savedQuizResults;
 		}
 
@@ -136,7 +135,6 @@ public class Program {
 		while (!checkIfValidQuizName(input, quizNames)) {
 			input = scanner.nextLine();
 		}
-
 		return input;
 	}
 
